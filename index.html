@@ -16,18 +16,15 @@
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            /* 4 秒后开始淡出，0.6 秒淡完 */
-            animation: loaderHide 0.6s ease 4s forwards;
+            transition: opacity 0.6s ease;
         }
-        @keyframes loaderHide {
-            to {
-                opacity: 0;
-                pointer-events: none;
-                visibility: hidden;
-            }
+        .loader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
-        /* 带蓝色发光动效的图片（再放大） */
+        /* 带蓝色发光动效的图片 */
         .loader-img {
             width: 320px;
             height: 320px;
@@ -405,7 +402,20 @@
                 localStorage.setItem('nailongHitCount', count);
             } catch (e) {}
         });
+
+        /* 强制加载动画停留满 4 秒 */
+        var startTime = Date.now();
+        function hideLoader() {
+            var elapsed = Date.now() - startTime;
+            var remain = 4000 - elapsed;   // 4 秒 - 已过时间
+            if (remain > 0) {
+                setTimeout(hideLoader, remain);
+            } else {
+                document.getElementById('loader').classList.add('hide');
+            }
+        }
+        hideLoader();
     </script>
 
 </body>
-                                                           </html>
+</html>
