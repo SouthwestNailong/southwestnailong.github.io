@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的首页</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* 右上角按钮容器 */
+        .top-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .top-buttons button {
+            padding: 12px 28px;
+            font-size: 16px;
+            background-color: #FFD700;
+            color: #333;
+            border: 3px solid #FFC000;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .top-buttons button:hover {
+            background-color: #FFC000;
+            transform: scale(1.05);
+        }
+        .top-buttons button:active {
+            transform: scale(0.97);
+        }
+
+        /* 图片区域 */
+        .main-img {
+            display: block;
+            max-width: 90%;
+            height: auto;
+            margin: 100px auto 0;
+            border-radius: 10px;
+        }
+
+        /* ===== 弹窗样式 ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .modal.show {
+            display: flex;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .modal-content img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            border: none;
+            background: none;
+        }
+        .close-btn:hover {
+            color: #333;
+        }
+
+        /* 弹窗内跳转按钮 */
+        .go-btn {
+            display: block;
+            margin: 20px auto 0;
+            padding: 12px 30px;
+            font-size: 16px;
+            background-color: #FFD700;
+            color: #333;
+            border: 3px solid #FFC000;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.2s;
+        }
+        .go-btn:hover {
+            background-color: #FFC000;
+            transform: scale(1.05);
+        }
+        .go-btn:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 右上角两个按钮 -->
+    <div class="top-buttons">
+        <button onclick="openModal('modal1')">石大官网</button>
+        <button onclick="openModal('modal2')">新员入群</button>
+    </div>
+
+    <!-- 主图片 -->
+    <img class="main-img" src="https://i.postimg.cc/3R818SQ8/IMG-20261012-213836.png" alt="首页图片">
+
+    <!-- ===== 弹窗一：文字 + 新标签页跳转按钮 ===== -->
+    <div class="modal" id="modal1">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal1')">×</button>
+            <h2>西南石大官网</h2>
+            <p>点击下方按钮，在新标签页打开西南石油大学官网。</p>
+
+            <button class="go-btn" onclick="window.open('https://www.swpu.edu.cn', '_blank')">
+                进入西南石油大学官网
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== 弹窗二：图片 ===== -->
+    <div class="modal" id="modal2">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal2')">×</button>
+            <img src="https://i.postimg.cc/HnK9tTJq/qrcode-1791809649105.jpg" alt="新员入群二维码">
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.add('show');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+        document.querySelectorAll('.modal').forEach(function(modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
