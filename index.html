@@ -42,12 +42,62 @@
             transform: scale(0.97);
         }
 
+        /* ===== 左上角打奶龙按钮 ===== */
+        .hit-area {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .hit-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;        /* 圆形 */
+            background-color: #0066cc; /* 蓝色 */
+            color: #fff;
+            font-size: 15px;
+            font-weight: bold;
+            border: 4px solid #0052a3;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            transition: transform 0.1s;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hit-btn:active {
+            transform: scale(0.9);     /* 按下去缩小 */
+        }
+
+        .hit-count {
+            font-size: 14px;
+            color: #333;
+            background: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+
         /* 图片区域 */
         .main-img {
             display: block;
             max-width: 90%;
             height: auto;
             margin: 100px auto 0;
+            border-radius: 10px;
+        }
+
+        /* 主图下方的 GIF */
+        .gif-img {
+            display: block;
+            max-width: 90%;
+            height: auto;
+            margin: 20px auto 0;
             border-radius: 10px;
         }
 
@@ -150,6 +200,12 @@
 </head>
 <body>
 
+    <!-- 左上角：打奶龙按钮 -->
+    <div class="hit-area">
+        <button class="hit-btn" id="hitBtn">打奶龙</button>
+        <div class="hit-count">已打：<span id="hitCount">0</span> 下</div>
+    </div>
+
     <!-- 右上角三个按钮 -->
     <div class="top-buttons">
         <button onclick="openModal('modal1')">石大官网</button>
@@ -157,23 +213,25 @@
         <button onclick="openModal('modal3')">奶龙游戏</button>
     </div>
 
-    <!-- 主图片（本地文件，和 index.html 放同一目录） -->
+    <!-- 主图片 -->
     <img class="main-img" src="IMG_20261012_213836.png" alt="首页图片">
 
-    <!-- ===== 弹窗一：文字 + 新标签页跳转按钮 ===== -->
+    <!-- 主图下面的 GIF -->
+    <img class="gif-img" src="1790999540100.gif" alt="动图">
+
+    <!-- ===== 弹窗一 ===== -->
     <div class="modal" id="modal1">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal1')">×</button>
             <h2>西南石大官网</h2>
             <p>点击下方按钮，在新标签页打开西南石油大学官网。</p>
-
             <button class="go-btn" onclick="window.open('https://www.swpu.edu.cn', '_blank')">
                 进入西南石油大学官网
             </button>
         </div>
     </div>
 
-    <!-- ===== 弹窗二：入群二维码 ===== -->
+    <!-- ===== 弹窗二 ===== -->
     <div class="modal" id="modal2">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal2')">×</button>
@@ -181,7 +239,7 @@
         </div>
     </div>
 
-    <!-- ===== 弹窗三：奶龙游戏合集 ===== -->
+    <!-- ===== 弹窗三 ===== -->
     <div class="modal" id="modal3">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal3')">×</button>
@@ -218,6 +276,7 @@
     </div>
 
     <script>
+        /* 弹窗控制 */
         function openModal(id) {
             document.getElementById(id).classList.add('show');
         }
@@ -230,6 +289,27 @@
                     modal.classList.remove('show');
                 }
             });
+        });
+
+        /* 打奶龙计数 */
+        var hitBtn = document.getElementById('hitBtn');
+        var hitCountEl = document.getElementById('hitCount');
+        var count = 0;
+
+        // 从本地读取上次的次数
+        try {
+            var saved = localStorage.getItem('nailongHitCount');
+            if (saved !== null) count = parseInt(saved, 10) || 0;
+        } catch (e) {}
+        hitCountEl.textContent = count;
+
+        // 点击加一
+        hitBtn.addEventListener('click', function() {
+            count++;
+            hitCountEl.textContent = count;
+            try {
+                localStorage.setItem('nailongHitCount', count);
+            } catch (e) {}
         });
     </script>
 
