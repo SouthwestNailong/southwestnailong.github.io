@@ -51,7 +51,7 @@
             border-radius: 10px;
         }
 
-        /* ===== 弹窗样式 ===== */
+        /* ===== 弹窗通用样式 ===== */
         .modal {
             display: none;
             position: fixed;
@@ -114,18 +114,51 @@
         .go-btn:active {
             transform: scale(0.97);
         }
+
+        /* 游戏列表 */
+        .game-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0;
+        }
+        .game-list li {
+            margin: 8px 0;
+        }
+        .game-list a {
+            display: block;
+            padding: 10px 15px;
+            background: #f9f9f9;
+            color: #0066cc;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            transition: all 0.2s;
+        }
+        .game-list a:hover {
+            background: #FFD700;
+            color: #333;
+            border-color: #FFC000;
+        }
+        .more-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #0066cc;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-    <!-- 右上角两个按钮 -->
+    <!-- 右上角三个按钮 -->
     <div class="top-buttons">
         <button onclick="openModal('modal1')">石大官网</button>
         <button onclick="openModal('modal2')">新员入群</button>
+        <button onclick="openModal('modal3')">奶龙游戏</button>
     </div>
 
-    <!-- 主图片 -->
-    <img class="main-img" src="https://i.postimg.cc/3R818SQ8/IMG-20261012-213836.png" alt="首页图片">
+    <!-- 主图片（本地文件，和 index.html 放同一目录） -->
+    <img class="main-img" src="IMG_20261012_213836.png" alt="首页图片">
 
     <!-- ===== 弹窗一：文字 + 新标签页跳转按钮 ===== -->
     <div class="modal" id="modal1">
@@ -140,11 +173,47 @@
         </div>
     </div>
 
-    <!-- ===== 弹窗二：图片 ===== -->
+    <!-- ===== 弹窗二：入群二维码 ===== -->
     <div class="modal" id="modal2">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal2')">×</button>
-            <img src="https://i.postimg.cc/HnK9tTJq/qrcode-1791809649105.jpg" alt="新员入群二维码">
+            <img src="qrcode_1791809649105.jpg" alt="新员入群二维码">
+        </div>
+    </div>
+
+    <!-- ===== 弹窗三：奶龙游戏合集 ===== -->
+    <div class="modal" id="modal3">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal3')">×</button>
+            <h2>奶龙游戏</h2>
+            <p>🐸 奶蛙小游戏合集（浏览器打开就能玩，不用下载）</p>
+
+            <ul class="game-list">
+                <li><a href="https://milkyfrog.com/" target="_blank">1. 奶蛙狂笑</a></li>
+                <li><a href="https://milkyfrog.com/hecheng" target="_blank">2. 合成大奶蛙</a></li>
+                <li><a href="https://milkyfrog.com/shenpao" target="_blank">3. 奶蛙神跑</a></li>
+                <li><a href="https://milkyfrog.com/yumaoqiu" target="_blank">4. 奶蛙羽毛球</a></li>
+                <li><a href="https://milkyfrog.com/jump" target="_blank">5. 奶蛙jump</a></li>
+                <li><a href="https://milkyfrog.com/shenlong" target="_blank">6. 召唤神龙</a></li>
+                <li><a href="https://milkyfrog.com/fangpi" target="_blank">7. 奶蛙放屁</a></li>
+                <li><a href="https://milkyfrog.com/zhua" target="_blank">8. 抓奶蛙</a></li>
+                <li><a href="https://milkyfrog.com/tanchiwa" target="_blank">9. 奶蛙贪吃蛙</a></li>
+                <li><a href="https://milkyfrog.com/2048" target="_blank">10. 奶蛙2048超级版</a></li>
+                <li><a href="https://milkyfrog.com/wuziqi" target="_blank">11. 奶蛙五子棋</a></li>
+                <li><a href="https://milkyfrog.com/nailegewa" target="_blank">12. 奶了个蛙</a></li>
+                <li><a href="https://milkyfrog.com/tiao" target="_blank">13. 奶蛙一跳</a></li>
+                <li><a href="https://milkyfrog.com/douluo" target="_blank">14. 奶斗罗</a></li>
+                <li><a href="https://milkyfrog.com/yanse" target="_blank">15. 奶蛙颜色大挑战</a></li>
+                <li><a href="https://milkyfrog.com/lvxing" target="_blank">16. 旅行奶蛙</a></li>
+                <li><a href="https://milkyfrog.com/kuaipao" target="_blank">17. 奶蛙快跑</a></li>
+                <li><a href="https://milkyfrog.com/gongchang" target="_blank">18. 奶蛙工厂</a></li>
+                <li><a href="https://milkyfrog.com/jiewu" target="_blank">19. 奶蛙街舞</a></li>
+                <li><a href="https://milkyfrog.com/gugupeng" target="_blank">20. 奶蛙鼓鼓碰</a></li>
+                <li><a href="https://milkyfrog.com/xiaoxiaole" target="_blank">21. 奶蛙消消乐</a></li>
+                <li><a href="https://milkyfrog.com/xiaowo" target="_blank">22. 奶蛙的小窝</a></li>
+            </ul>
+
+            <a class="more-link" href="https://milkyfrog.com/games" target="_blank">更多奶蛙游戏 →</a>
         </div>
     </div>
 
