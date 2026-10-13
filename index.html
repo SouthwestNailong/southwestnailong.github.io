@@ -138,26 +138,41 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             white-space: nowrap;
         }
-        .dex-btn {
-            padding: 10px 20px;
+
+        /* ===== 顶部木质框按钮 ===== */
+        .wood-bar {
+            position: fixed;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            padding: 10px 18px;
+            background: url("wood-bg.jpg") center/cover #8B5A2B;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+            z-index: 200;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .wood-bar button {
+            padding: 10px 18px;
             font-size: 14px;
-            background-color: #9b59b6;
-            color: #fff;
-            border: 3px solid #7d3c98;
-            border-radius: 30px;
+            font-weight: bold;
+            background-color: #f7e2b8;
+            color: #5b3a16;
+            border: 2px solid #b8874a;
+            border-radius: 20px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             transition: all 0.2s;
             white-space: nowrap;
         }
-        .dex-btn:hover { background-color: #7d3c98; transform: scale(1.05); }
-        .dex-btn:active { transform: scale(0.97); }
+        .wood-bar button:hover { background-color: #ffd77a; transform: translateY(-2px); }
 
         /* ===== 主图与 GIF ===== */
         .main-img {
             display: block;
             max-width: 90%; height: auto;
-            margin: 100px auto 0;
+            margin: 120px auto 0;
             border-radius: 10px;
             position: relative;
             z-index: 1;
@@ -526,6 +541,170 @@
             margin-top: 14px;
             line-height: 1.8;
         }
+
+        /* ===== 个人账户弹窗 ===== */
+        .account-modal {
+            background: #fffaf0;
+            border: 6px solid #d4a76a;
+            border-radius: 18px;
+            padding: 24px;
+            max-width: 90%;
+            max-height: 88%;
+            overflow: auto;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .account-modal h2 {
+            text-align: center;
+            color: #8B5A2B;
+            margin: 0 0 8px;
+            font-size: 22px;
+        }
+        .account-level {
+            text-align: center;
+            font-size: 15px;
+            color: #c0392b;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+        .avatar-box {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .avatar-box img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #FFD700;
+            box-shadow: 0 0 20px rgba(255,215,0,0.7);
+            background: #fff;
+        }
+        .avatar-title {
+            font-size: 14px;
+            color: #8B5A2B;
+            font-weight: bold;
+            margin: 16px 0 8px;
+            text-align: center;
+        }
+        .avatar-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .avatar-item {
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+            padding: 6px;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .avatar-item img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .avatar-item .av-name {
+            font-size: 11px;
+            color: #5b3a16;
+            font-weight: bold;
+        }
+        .avatar-item.av-locked {
+            filter: brightness(0.35) grayscale(1);
+            cursor: pointer;
+        }
+        .avatar-item.av-unlocked:hover {
+            border-color: #FFD700;
+            transform: scale(1.05);
+        }
+        .avatar-item.av-current {
+            border-color: #c0392b;
+            box-shadow: 0 0 12px rgba(192,57,43,0.7);
+        }
+
+        /* ===== 商城弹窗 ===== */
+        .shop-modal {
+            background: #fffaf0;
+            border: 6px solid #d4a76a;
+            border-radius: 18px;
+            padding: 24px;
+            max-width: 90%;
+            max-height: 88%;
+            overflow: auto;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .shop-modal h2 {
+            text-align: center;
+            color: #8B5A2B;
+            margin: 0 0 6px;
+            font-size: 22px;
+        }
+        .shop-coin {
+            text-align: center;
+            font-size: 16px;
+            color: #c0392b;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+        .shop-section {
+            font-size: 15px;
+            font-weight: bold;
+            color: #8B5A2B;
+            margin: 18px 0 10px;
+            border-bottom: 2px solid #d4a76a;
+            padding-bottom: 4px;
+        }
+        .shop-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            border: 2px solid #d4a76a;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+        }
+        .shop-item .si-info { font-size: 14px; color: #333; }
+        .shop-item .si-info b { color: #c0392b; }
+        .shop-item button {
+            padding: 8px 16px;
+            font-size: 14px;
+            background-color: #c0392b;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .shop-item button:hover { background-color: #a93226; }
+        .shop-item button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* ===== 等级提示条 ===== */
+        .level-tip {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: #FFD700;
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 2000;
+            display: none;
+            white-space: nowrap;
+        }
+        .level-tip.show { display: block; }
     </style>
 </head>
 <body>
@@ -540,12 +719,18 @@
     <!-- 背景图层 -->
     <div class="bg-layer"></div>
 
-    <!-- 左上角：打奶龙 + 奶图鉴 + 通知书 -->
+    <!-- 顶部木质框按钮 -->
+    <div class="wood-bar">
+        <button onclick="openAccount()">个人账户</button>
+        <button onclick="openModal('modalShop')">奶币商城</button>
+        <button onclick="openModal('modalDex')">奶图鉴</button>
+        <button onclick="openModal('modalNotice')">通知书</button>
+    </div>
+
+    <!-- 左上角：打奶龙 -->
     <div class="left-buttons">
         <button class="hit-btn" id="hitBtn">打奶龙</button>
         <div class="hit-count">已打：<span id="hitCount">0</span> 下</div>
-        <button class="dex-btn" onclick="openModal('modalDex')">奶图鉴</button>
-        <button class="dex-btn" onclick="openModal('modalNotice')">通知书</button>
     </div>
 
     <!-- 右上角三个按钮 -->
@@ -555,10 +740,10 @@
         <button onclick="openModal('modal3')">奶龙游戏</button>
     </div>
 
-    <!-- 主图片（首屏，正常加载） -->
+    <!-- 主图片 -->
     <img class="main-img" src="IMG_20261012_213836.png" alt="首页图片">
 
-    <!-- 主图下面的 GIF（首屏，正常加载） -->
+    <!-- 主图下面的 GIF -->
     <img class="gif-img" src="1790999540100.gif" alt="动图">
 
     <!-- 底部：每日一奶 -->
@@ -649,42 +834,46 @@
         </div>
     </div>
 
-    <!-- ===== 奶龙录取通知书弹窗 ===== -->
-    <div class="modal" id="modalNotice">
-        <div class="notice-modal">
-            <button class="close-btn" onclick="closeModal('modalNotice')">×</button>
-            <h2>奶龙大学 × 西南石油大学 联合培养录取通知书</h2>
+    <!-- ===== 个人账户弹窗 ===== -->
+    <div class="modal" id="modalAccount">
+        <div class="account-modal">
+            <button class="close-btn" onclick="closeModal('modalAccount')">×</button>
+            <h2>个人账户</h2>
+            <div class="account-level" id="accLevel">当前等级：奶人</div>
 
-            <div class="notice-label">姓名</div>
-            <input class="notice-input" id="noticeName" type="text" placeholder="请输入姓名">
-
-            <div class="notice-label">专业</div>
-            <input class="notice-input" id="noticeMajor" type="text" placeholder="例如：油气储运工程">
-
-            <div class="notice-btn-row">
-                <button onclick="generateNotice()">生成预览</button>
-                <button onclick="downloadNotice()">下载通知书图片</button>
+            <div class="avatar-box">
+                <img id="accAvatar" src="nairen.jpeg" alt="头像">
             </div>
 
-            <div id="noticePreview">
-                <div class="np-title">录取通知书</div>
-                <div class="np-sub">奶龙大学 × 西南石油大学（联合培养）</div>
-                <div class="np-body">
-                    兹收到：<br>
-                    　姓名：<b id="pvName">奶龙</b><br>
-                    　录取专业：<b id="pvMajor">能源与奶龙工程</b><br><br>
-                    校训：明德笃志，博学创新<br>
-                    石大精神：为祖国加油，为民族争气
-                </div>
-                <div class="np-foot">✨ 奶龙陪你深耕油气，能源报国 ✨</div>
-                <div class="np-links">
-                    趣味联动 ｜ 官方学籍查询：https://www.swpu.edu.cn/<br>
-                    ⚠️ 趣味玩梗工具，非官方录取文件<br>
-                    西南石油大学官网：https://www.swpu.edu.cn/
-                </div>
+            <div class="avatar-title">— 切换头像 —</div>
+            <div class="avatar-grid" id="avatarGrid"></div>
+        </div>
+    </div>
+
+    <!-- ===== 商城弹窗 ===== -->
+    <div class="modal" id="modalShop">
+        <div class="shop-modal">
+            <button class="close-btn" onclick="closeModal('modalShop')">×</button>
+            <h2>🛒 奶币商城</h2>
+            <div class="shop-coin">当前奶币：<span id="shopCoin">0</span></div>
+
+            <div class="shop-section">出售图鉴卡（只能卖多余的）</div>
+            <div id="sellList"></div>
+
+            <div class="shop-section">购买项目</div>
+            <div class="shop-item">
+                <div class="si-info"><b>奶钻</b> · 500 奶币 · 已有 <span id="diamondNum">0</span> 颗</div>
+                <button onclick="buyItem('diamond', 500)">购买</button>
+            </div>
+            <div class="shop-item">
+                <div class="si-info"><b>奶豪头像</b> · 5000 奶币</div>
+                <button onclick="buyItem('haohao', 5000)">购买</button>
             </div>
         </div>
     </div>
+
+    <!-- ===== 等级提示条 ===== -->
+    <div class="level-tip" id="levelTip"></div>
 
     <script>
         /* ========== 弹窗控制 ========== */
@@ -722,7 +911,7 @@
             document.getElementById('loader').classList.add('hide');
         }, 4000);
 
-        /* ========== 奶图鉴数据 ========== */
+        /* ========== 图鉴数据 ========== */
         var DEX_DATA = [
             { id:"yenai", img:"yenai.jpg", name:"椰奶", desc:"由椰子变异而成，会能吃吗？", rarity:"normal" },
             { id:"naixia", img:"naixia.jpeg", name:"奶蛛侠", desc:"某个宇宙的彼得帕克似乎并不是被蜘蛛咬中的...", rarity:"normal" },
@@ -742,20 +931,60 @@
             { id:"rain", img:"Image_1791022800868_721.jpg", name:"雨中奶龙", desc:"雨中的奶龙，伦敦未必有他忧郁", rarity:"hidden" }
         ];
 
+        /* ========== 资源与状态 ========== */
         var collected = [];
+        var cardCount = {};
+        var coin = 0;
+        var currentAvatar = "nairen";
+        var ownedAvatars = ["nairen"];
+        var diamondCount = 0;
+
         try {
-            var savedDex = localStorage.getItem('nailongDex');
-            if (savedDex) collected = JSON.parse(savedDex);
+            var s1 = localStorage.getItem('nailongDex');
+            if (s1) collected = JSON.parse(s1);
+            var s2 = localStorage.getItem('nailongCardCount');
+            if (s2) cardCount = JSON.parse(s2);
+            var s3 = localStorage.getItem('nailongCoin');
+            if (s3) coin = parseInt(s3, 10) || 0;
+            var s4 = localStorage.getItem('nailongAvatar');
+            if (s4) currentAvatar = s4;
+            var s5 = localStorage.getItem('nailongOwnedAvatars');
+            if (s5) ownedAvatars = JSON.parse(s5);
+            var s6 = localStorage.getItem('nailongDiamond');
+            if (s6) diamondCount = parseInt(s6, 10) || 0;
         } catch (e) {}
-        function saveCollected() {
-            try { localStorage.setItem('nailongDex', JSON.stringify(collected)); } catch (e) {}
+
+        function saveAll() {
+            try {
+                localStorage.setItem('nailongDex', JSON.stringify(collected));
+                localStorage.setItem('nailongCardCount', JSON.stringify(cardCount));
+                localStorage.setItem('nailongCoin', coin);
+                localStorage.setItem('nailongAvatar', currentAvatar);
+                localStorage.setItem('nailongOwnedAvatars', JSON.stringify(ownedAvatars));
+                localStorage.setItem('nailongDiamond', diamondCount);
+            } catch (e) {}
         }
 
-        /* ========== 渲染图鉴（图片懒加载） ========== */
+        /* ========== 等级 ========== */
+        function getLevel() {
+            var total = DEX_DATA.length;
+            var got = collected.length;
+            if (got >= total) return '奶王';
+            if (got >= 8) return '奶将';
+            if (got >= 3) return '奶兵';
+            return '奶人';
+        }
+        function showLevelTip() {
+            var tip = document.getElementById('levelTip');
+            tip.textContent = '🎉 恭喜升级：' + getLevel();
+            tip.classList.add('show');
+            setTimeout(function() { tip.classList.remove('show'); }, 2500);
+        }
+
+        /* ========== 图鉴渲染 ========== */
         function renderDex() {
             var grid = document.getElementById('dexGrid');
             grid.innerHTML = '';
-
             var totalCount = DEX_DATA.length;
             var allCollected = (collected.length >= totalCount);
 
@@ -770,7 +999,7 @@
                     div.className += ' unlocked';
                     div.innerHTML =
                         '<img src="' + item.img + '" loading="lazy" alt="' + item.name + '">' +
-                        '<div class="dex-name">' + item.name + '</div>';
+                        '<div class="dex-name">' + item.name + ' ×' + (cardCount[item.id] || 0) + '</div>';
                     div.onclick = function() { showDexDetail(item); };
                 } else {
                     if (item.rarity === 'hidden') {
@@ -787,15 +1016,13 @@
                 }
 
                 if (allCollected) div.className += ' all-gold';
-
                 grid.appendChild(div);
             });
         }
 
-        /* ========== 显示勋章详情 ========== */
         function showDexDetail(item) {
             document.getElementById('dexDetailImg').src = item.img;
-            document.getElementById('dexDetailName').textContent = item.name;
+            document.getElementById('dexDetailName').textContent = item.name + ' ×' + (cardCount[item.id] || 0);
             document.getElementById('dexDetailDesc').textContent = item.desc;
             document.getElementById('dexDetail').classList.add('show');
         }
@@ -806,17 +1033,16 @@
         var origOpenModal = openModal;
         openModal = function(id) {
             if (id === 'modalDex') renderDex();
+            if (id === 'modalShop') renderShop();
             origOpenModal(id);
         };
 
-        /* ========== 每日一奶：随机抽取 ========== */
+        /* ========== 每日一奶 ========== */
         document.getElementById('dailyBtn').addEventListener('click', function() {
             var normalList = DEX_DATA.filter(function(x) { return x.rarity === 'normal'; });
             var hiddenList = DEX_DATA.filter(function(x) { return x.rarity === 'hidden'; });
 
             var picked;
-
-            // 4 张隐藏款，每张 3%（合计 12%）
             var roll = Math.random();
             if (roll < 0.12) {
                 picked = hiddenList[Math.floor(Math.random() * hiddenList.length)];
@@ -824,10 +1050,15 @@
                 picked = normalList[Math.floor(Math.random() * normalList.length)];
             }
 
-            if (collected.indexOf(picked.id) === -1) {
-                collected.push(picked.id);
-                saveCollected();
-            }
+            var oldLevel = getLevel();
+            if (collected.indexOf(picked.id) === -1) collected.push(picked.id);
+            cardCount[picked.id] = (cardCount[picked.id] || 0) + 1;
+            saveAll();
+
+            setTimeout(function() {
+                var newLevel = getLevel();
+                if (newLevel !== oldLevel) showLevelTip();
+            }, 300);
 
             document.getElementById('dailyImg').src = picked.img;
             document.getElementById('dailyName').textContent = picked.name;
@@ -842,7 +1073,138 @@
             openModal('modalDaily');
         });
 
-        /* ========== 通知书生成与下载 ========== */
+        /* ========== 个人账户 ========== */
+        function openAccount() {
+            renderAccount();
+            openModal('modalAccount');
+        }
+
+        function getAvatarImg(id) {
+            var found = AVATARS.filter(function(x) { return x.id === id; })[0];
+            return found ? found.img : 'nairen.jpeg';
+        }
+
+        function renderAccount() {
+            document.getElementById('accLevel').textContent = '当前等级：' + getLevel();
+            document.getElementById('accAvatar').src = getAvatarImg(currentAvatar);
+
+            var grid = document.getElementById('avatarGrid');
+            grid.innerHTML = '';
+            AVATARS.forEach(function(av) {
+                var div = document.createElement('div');
+                div.className = 'avatar-item';
+                var owned = ownedAvatars.indexOf(av.id) !== -1;
+                if (owned) {
+                    div.className += ' av-unlocked';
+                    if (av.id === currentAvatar) div.className += ' av-current';
+                } else {
+                    div.className += ' av-locked';
+                }
+                div.innerHTML =
+                    '<img src="' + av.img + '" loading="lazy" alt="' + av.name + '">' +
+                    '<div class="av-name">' + av.name + '</div>';
+                div.onclick = function() { clickAvatar(av); };
+                grid.appendChild(div);
+            });
+        }
+
+        function clickAvatar(av) {
+            var owned = ownedAvatars.indexOf(av.id) !== -1;
+            if (owned) {
+                currentAvatar = av.id;
+                saveAll();
+                renderAccount();
+            } else {
+                alert('【' + av.name + '】获取方式：' + av.how);
+            }
+        }
+
+        var AVATARS = [
+            { id:"nairen", img:"nairen.jpeg", name:"奶人", how:"初始头像" },
+            { id:"naiwa", img:"naiwa.jpg", name:"奶蛙", how:"收集奶蛙图鉴" },
+            { id:"naimao", img:"naimao.jpeg", name:"奶猫", how:"收集奶猫图鉴" },
+            { id:"naigou", img:"naigou.jpeg", name:"奶狗", how:"收集奶狗图鉴" },
+            { id:"naidan", img:"naidan.jpg", name:"奶蛋", how:"收集奶蛋图鉴" },
+            { id:"naishu", img:"naishu.jpg", name:"奶鼠", how:"收集奶鼠图鉴" },
+            { id:"naishe", img:"naishe.png", name:"奶蛇", how:"收集奶蛇图鉴" },
+            { id:"yenai", img:"yenai.jpg", name:"椰奶", how:"收集椰奶图鉴" },
+            { id:"naibin", img:"naibin.png", name:"奶兵", how:"收集任意 3 张不同图鉴卡解锁" },
+            { id:"naijiang", img:"naijiang.png", name:"奶将", how:"收集任意 8 张不同图鉴卡解锁" },
+            { id:"naiwang", img:"naiwang.png", name:"奶王", how:"收集全部图鉴卡解锁" },
+            { id:"naihao", img:"naihao.png", name:"奶豪", how:"商城花 5000 奶币购买" }
+        ];
+
+        /* 根据等级和购买状态解锁头像 */
+        function refreshAvatarOwnership() {
+            var lv = getLevel();
+            if (collected.length >= 3 && ownedAvatars.indexOf('naibin') === -1) ownedAvatars.push('naibin');
+            if (collected.length >= 8 && ownedAvatars.indexOf('naijiang') === -1) ownedAvatars.push('naijiang');
+            if (collected.length >= DEX_DATA.length && ownedAvatars.indexOf('naiwang') === -1) ownedAvatars.push('naiwang');
+            saveAll();
+        }
+
+        /* ========== 商城 ========== */
+        function renderShop() {
+            document.getElementById('shopCoin').textContent = coin;
+            var dn = document.getElementById('diamondNum');
+            if (dn) dn.textContent = diamondCount;
+
+            var list = document.getElementById('sellList');
+            list.innerHTML = '';
+
+            DEX_DATA.forEach(function(item) {
+                var have = cardCount[item.id] || 0;
+                var canSell = have > 1;
+                var price = item.rarity === 'hidden' ? 500 : 100;
+
+                var div = document.createElement('div');
+                div.className = 'shop-item';
+                div.innerHTML =
+                    '<div class="si-info">' + item.name + ' ×' + have + ' · 售价 <b>' + price + '</b> 奶币</div>' +
+                    '<button ' + (canSell ? '' : 'disabled') + ' onclick="sellCard(\'' + item.id + '\')">出售</button>';
+                list.appendChild(div);
+            });
+        }
+
+        function sellCard(id) {
+            var have = cardCount[id] || 0;
+            if (have <= 1) {
+                alert('至少保留 1 张，不能出售最后一张。');
+                return;
+            }
+            var item = DEX_DATA.filter(function(x) { return x.id === id; })[0];
+            var price = item.rarity === 'hidden' ? 500 : 100;
+            cardCount[id] = have - 1;
+            coin += price;
+            saveAll();
+            renderShop();
+        }
+
+        function buyItem(type, cost) {
+            if (coin < cost) {
+                alert('奶币不足，还差 ' + (cost - coin) + ' 奶币。');
+                return;
+            }
+            if (type === 'diamond') {
+                coin -= cost;
+                diamondCount += 1;
+                saveAll();
+                renderShop();
+                alert('💎 成功购买 1 颗奶钻！当前拥有：' + diamondCount + ' 颗');
+            } else if (type === 'haohao') {
+                if (ownedAvatars.indexOf('naihao') !== -1) {
+                    alert('你已经有奶豪头像了。');
+                    return;
+                }
+                coin -= cost;
+                ownedAvatars.push('naihao');
+                saveAll();
+                renderShop();
+                alert('👑 成功购买奶豪头像！可在个人账户中切换。');
+            }
+        }
+
+        /* ========== 通知书 ========== */
         function generateNotice() {
             var name = document.getElementById('noticeName').value.trim() || '奶龙';
             var major = document.getElementById('noticeMajor').value.trim() || '能源与奶龙工程';
@@ -852,7 +1214,6 @@
 
         function downloadNotice() {
             var node = document.getElementById('noticePreview');
-
             if (typeof html2canvas !== 'undefined') {
                 html2canvas(node, { scale: 2, backgroundColor: '#fdf6e3' }).then(function(canvas) {
                     var link = document.createElement('a');
@@ -864,7 +1225,10 @@
                 alert('请长按预览图保存，或刷新页面后重试。');
             }
         }
+
+        /* ========== 启动时刷新头像拥有状态 ========== */
+        refreshAvatarOwnership();
     </script>
 
 </body>
-</html>
+    </html>
