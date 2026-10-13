@@ -565,7 +565,32 @@
             font-size: 15px;
             color: #c0392b;
             font-weight: bold;
-            margin-bottom: 18px;
+            margin-bottom: 10px;
+        }
+        .account-name-row {
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .account-name-row input {
+            width: 60%;
+            box-sizing: border-box;
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 2px solid #d4a76a;
+            border-radius: 10px;
+            outline: none;
+            text-align: center;
+            background: #fff;
+        }
+        .account-name-row button {
+            margin-left: 8px;
+            padding: 8px 14px;
+            font-size: 14px;
+            background-color: #8B5A2B;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
         }
         .avatar-box {
             text-align: center;
@@ -624,6 +649,12 @@
         .avatar-item.av-current {
             border-color: #c0392b;
             box-shadow: 0 0 12px rgba(192,57,43,0.7);
+        }
+        .avatar-item.av-hidden {
+            border-color: #e74c3c;
+        }
+        .avatar-item.av-hidden.av-unlocked {
+            box-shadow: 0 0 14px rgba(231,76,60,0.9);
         }
 
         /* ===== 商城弹窗 ===== */
@@ -707,6 +738,7 @@
         .level-tip.show { display: block; }
     </style>
 </head>
+
 <body>
 
     <!-- 加载动画层 -->
@@ -841,6 +873,11 @@
             <h2>个人账户</h2>
             <div class="account-level" id="accLevel">当前等级：奶人</div>
 
+            <div class="account-name-row">
+                <input id="accNameInput" type="text" placeholder="输入昵称" maxlength="12">
+                <button onclick="saveAccountName()">保存</button>
+            </div>
+
             <div class="avatar-box">
                 <img id="accAvatar" src="nairen.jpeg" alt="头像">
             </div>
@@ -937,6 +974,7 @@
         var currentAvatar = "nairen";
         var ownedAvatars = ["nairen"];
         var diamondCount = 0;
+        var accountName = "";
 
         try {
             var s1 = localStorage.getItem('nailongDex');
@@ -951,6 +989,8 @@
             if (s5) ownedAvatars = JSON.parse(s5);
             var s6 = localStorage.getItem('nailongDiamond');
             if (s6) diamondCount = parseInt(s6, 10) || 0;
+            var s7 = localStorage.getItem('nailongName');
+            if (s7) accountName = s7;
         } catch (e) {}
 
         function saveAll() {
@@ -961,6 +1001,7 @@
                 localStorage.setItem('nailongAvatar', currentAvatar);
                 localStorage.setItem('nailongOwnedAvatars', JSON.stringify(ownedAvatars));
                 localStorage.setItem('nailongDiamond', diamondCount);
+                localStorage.setItem('nailongName', accountName);
             } catch (e) {}
         }
 
@@ -1080,6 +1121,13 @@
             openModal('modalAccount');
         }
 
+        function saveAccountName() {
+            var val = document.getElementById('accNameInput').value.trim();
+            accountName = val || '奶龙研究员';
+            saveAll();
+            alert('昵称已保存：' + accountName);
+        }
+
         function getAvatarImg(id) {
             var found = AVATARS.filter(function(x) { return x.id === id; })[0];
             return found ? found.img : 'nairen.jpeg';
@@ -1088,12 +1136,15 @@
         function renderAccount() {
             document.getElementById('accLevel').textContent = '当前等级：' + getLevel();
             document.getElementById('accAvatar').src = getAvatarImg(currentAvatar);
+            document.getElementById('accNameInput').value = accountName || '';
 
             var grid = document.getElementById('avatarGrid');
             grid.innerHTML = '';
             AVATARS.forEach(function(av) {
                 var div = document.createElement('div');
                 div.className = 'avatar-item';
+                if (av.rarity === 'hidden') div.className += ' av-hidden';
+
                 var owned = ownedAvatars.indexOf(av.id) !== -1;
                 if (owned) {
                     div.className += ' av-unlocked';
@@ -1121,28 +1172,29 @@
         }
 
         var AVATARS = [
-            { id:"nairen", img:"nairen.jpeg", name:"奶人", how:"初始头像" },
-            { id:"naiwa", img:"naiwa.jpg", name:"奶蛙", how:"收集奶蛙图鉴" },
-            { id:"naimao", img:"naimao.jpeg", name:"奶猫", how:"收集奶猫图鉴" },
-            { id:"naigou", img:"naigou.jpeg", name:"奶狗", how:"收集奶狗图鉴" },
-            { id:"naidan", img:"naidan.jpg", name:"奶蛋", how:"收集奶蛋图鉴" },
-            { id:"naishu", img:"naishu.jpg", name:"奶鼠", how:"收集奶鼠图鉴" },
-            { id:"naishe", img:"naishe.png", name:"奶蛇", how:"收集奶蛇图鉴" },
-            { id:"yenai", img:"yenai.jpg", name:"椰奶", how:"收集椰奶图鉴" },
-            { id:"naibin", img:"naibin.png", name:"奶兵", how:"收集任意 3 张不同图鉴卡解锁" },
-            { id:"naijiang", img:"naijiang.png", name:"奶将", how:"收集任意 8 张不同图鉴卡解锁" },
-            { id:"naiwang", img:"naiwang.png", name:"奶王", how:"收集全部图鉴卡解锁" },
-            { id:"naihao", img:"naihao.png", name:"奶豪", how:"商城花 5000 奶币购买" }
+            { id:"nairen", img:"nairen.jpeg", name:"奶人", how:"初始头像", rarity:"normal" },
+            { id:"naiwa", img:"naiwa.jpg", name:"奶蛙", how:"收集奶蛙图鉴", rarity:"normal" },
+            { id:"naimao", img:"naimao.jpeg", name:"奶猫", how:"收集奶猫图鉴", rarity:"normal" },
+            { id:"naigou", img:"naigou.jpeg", name:"奶狗", how:"收集奶狗图鉴", rarity:"normal" },
+            { id:"naidan", img:"naidan.jpg", name:"奶蛋", how:"收集奶蛋图鉴", rarity:"normal" },
+            { id:"naishu", img:"naishu.jpg", name:"奶鼠", how:"收集奶鼠图鉴", rarity:"normal" },
+            { id:"naishe", img:"naishe.png", name:"奶蛇", how:"收集奶蛇图鉴", rarity:"normal" },
+            { id:"yenai", img:"yenai.jpg", name:"椰奶", how:"收集椰奶图鉴", rarity:"normal" },
+            { id:"naibin", img:"naibin.png", name:"奶兵", how:"收集任意 3 张不同图鉴卡解锁", rarity:"normal" },
+            { id:"naijiang", img:"naijiang.png", name:"奶将", how:"收集任意 8 张不同图鉴卡解锁", rarity:"normal" },
+            { id:"naiwang", img:"naiwang.png", name:"奶王", how:"收集全部图鉴卡解锁", rarity:"normal" },
+            { id:"naihao", img:"naihao.png", name:"奶豪", how:"商城花 5000 奶币购买", rarity:"normal" },
+            { id:"naizhuang", img:"naizhuang.jpeg", name:"奶壮", how:"收集奶壮图鉴（隐藏款）", rarity:"hidden" },
+            { id:"naidan_lun", img:"naidan_lun.png", name:"奶蛋（轮椅）", how:"收集奶蛋（轮椅）图鉴（隐藏款）", rarity:"hidden" },
+            { id:"lienai", img:"lienai.jpg", name:"猎奶", how:"收集猎奶图鉴（隐藏款）", rarity:"hidden" },
+            { id:"rain", img:"Image_1791022800868_721.jpg", name:"雨中奶龙", how:"收集雨中奶龙图鉴（隐藏款）", rarity:"hidden" }
         ];
 
-        /* 刷新头像拥有状态：等级 + 图鉴头像自动解锁 */
         function refreshAvatarOwnership() {
-            // 等级头像
             if (collected.length >= 3 && ownedAvatars.indexOf('naibin') === -1) ownedAvatars.push('naibin');
             if (collected.length >= 8 && ownedAvatars.indexOf('naijiang') === -1) ownedAvatars.push('naijiang');
             if (collected.length >= DEX_DATA.length && ownedAvatars.indexOf('naiwang') === -1) ownedAvatars.push('naiwang');
 
-            // 图鉴头像：收集对应图鉴即解锁
             AVATARS.forEach(function(av) {
                 if (av.id === 'nairen' || av.id === 'naibin' || av.id === 'naijiang' || av.id === 'naiwang' || av.id === 'naihao') return;
                 if (collected.indexOf(av.id) !== -1 && ownedAvatars.indexOf(av.id) === -1) {
