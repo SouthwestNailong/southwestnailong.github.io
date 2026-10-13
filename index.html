@@ -81,16 +81,17 @@
             background-color: #f5f5f5;
         }
 
-        /* ===== 右上角按钮 ===== */
-        .top-buttons {
+        /* ===== 右下角按钮（石大官网 / 新员入群 / 奶龙游戏） ===== */
+        .bottom-right-buttons {
             position: fixed;
-            top: 20px; right: 20px;
+            bottom: 20px; right: 20px;
             display: flex;
             flex-direction: column;
             gap: 12px;
             z-index: 100;
+            align-items: flex-end;
         }
-        .top-buttons button {
+        .bottom-right-buttons button {
             padding: 12px 28px;
             font-size: 16px;
             background-color: #FFD700;
@@ -98,22 +99,30 @@
             border: 3px solid #FFC000;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow:
+                0 0 10px rgba(255, 215, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.5);
             transition: all 0.2s;
             white-space: nowrap;
         }
-        .top-buttons button:hover { background-color: #FFC000; transform: scale(1.05); }
-        .top-buttons button:active { transform: scale(0.97); }
+        .bottom-right-buttons button:hover {
+            background-color: #FFC000;
+            transform: scale(1.05);
+            box-shadow:
+                0 0 16px rgba(255, 215, 0, 1),
+                0 0 32px rgba(255, 215, 0, 0.7);
+        }
+        .bottom-right-buttons button:active { transform: scale(0.97); }
 
-        /* ===== 左上角按钮组 ===== */
-        .left-buttons {
+        /* ===== 左下角：打奶龙 ===== */
+        .bottom-left-hit {
             position: fixed;
-            top: 20px; left: 20px;
+            bottom: 20px; left: 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            z-index: 100;
             align-items: center;
+            gap: 8px;
+            z-index: 100;
         }
         .hit-btn {
             width: 80px; height: 80px;
@@ -124,10 +133,17 @@
             font-weight: bold;
             border: 4px solid #0052a3;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            transition: transform 0.1s;
+            box-shadow:
+                0 0 12px rgba(0, 150, 255, 0.9),
+                0 0 24px rgba(0, 150, 255, 0.6);
+            transition: transform 0.1s, box-shadow 0.2s;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
+        }
+        .hit-btn:hover {
+            box-shadow:
+                0 0 20px rgba(0, 150, 255, 1),
+                0 0 36px rgba(0, 150, 255, 0.8);
         }
         .hit-btn:active { transform: scale(0.9); }
         .hit-count {
@@ -135,7 +151,7 @@
             background: #fff;
             padding: 4px 12px;
             border-radius: 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 0 8px rgba(0, 150, 255, 0.6);
             white-space: nowrap;
         }
 
@@ -180,7 +196,7 @@
         .gif-img {
             display: block;
             max-width: 90%; height: auto;
-            margin: 20px auto 0;
+            margin: 20px auto 100px;
             border-radius: 10px;
             position: relative;
             z-index: 1;
@@ -189,7 +205,7 @@
         /* ===== 底部“每日一奶”按钮 ===== */
         .daily-area {
             text-align: center;
-            margin: 40px 0 60px;
+            margin: 40px 0 120px;
             position: relative;
             z-index: 1;
         }
@@ -782,14 +798,14 @@
         <button onclick="openModal('modalNotice')">通知书</button>
     </div>
 
-    <!-- 左上角：打奶龙 -->
-    <div class="left-buttons">
+    <!-- 左下角：打奶龙 -->
+    <div class="bottom-left-hit">
         <button class="hit-btn" id="hitBtn">打奶龙</button>
         <div class="hit-count">已打：<span id="hitCount">0</span> 下</div>
     </div>
 
-    <!-- 右上角三个按钮 -->
-    <div class="top-buttons">
+    <!-- 右下角三个按钮 -->
+    <div class="bottom-right-buttons">
         <button onclick="openModal('modal1')">石大官网</button>
         <button onclick="openModal('modal2')">新员入群</button>
         <button onclick="openModal('modal3')">奶龙游戏</button>
