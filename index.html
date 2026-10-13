@@ -485,7 +485,6 @@
         .notice-btn-row button:hover { background-color: #a93226; }
         .notice-btn-row button:active { transform: scale(0.97); }
 
-        /* 通知书预览卡片 */
         #noticePreview {
             margin-top: 24px;
             background: #fdf6e3;
@@ -512,9 +511,7 @@
             color: #333;
             line-height: 2.1;
         }
-        #noticePreview .np-body b {
-            color: #c0392b;
-        }
+        #noticePreview .np-body b { color: #c0392b; }
         #noticePreview .np-foot {
             text-align: center;
             font-size: 15px;
@@ -557,10 +554,10 @@
         <button onclick="openModal('modal3')">奶龙游戏</button>
     </div>
 
-    <!-- 主图片 -->
+    <!-- 主图片（首屏，正常加载） -->
     <img class="main-img" src="IMG_20261012_213836.png" alt="首页图片">
 
-    <!-- 主图下面的 GIF -->
+    <!-- 主图下面的 GIF（首屏，正常加载） -->
     <img class="gif-img" src="1790999540100.gif" alt="动图">
 
     <!-- 底部：每日一奶 -->
@@ -584,7 +581,7 @@
     <div class="modal" id="modal2">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal2')">×</button>
-            <img src="qrcode_1791809649105.jpg" alt="新员入群二维码">
+            <img src="qrcode_1791809649105.jpg" loading="lazy" alt="新员入群二维码">
         </div>
     </div>
 
@@ -626,7 +623,7 @@
     <div class="modal" id="modalDaily">
         <div class="modal-content daily-result">
             <button class="close-btn" onclick="closeModal('modalDaily')">×</button>
-            <img class="result-img" id="dailyImg" src="" alt="抽取结果">
+            <img class="result-img" id="dailyImg" src="" loading="lazy" alt="抽取结果">
             <div class="result-name" id="dailyName"></div>
             <div class="result-rarity" id="dailyRarity"></div>
         </div>
@@ -645,7 +642,7 @@
     <div class="dex-detail" id="dexDetail">
         <div class="dex-detail-content">
             <button class="dex-detail-close" onclick="closeDexDetail()">×</button>
-            <img id="dexDetailImg" src="" alt="勋章图">
+            <img id="dexDetailImg" src="" loading="lazy" alt="勋章图">
             <h3 id="dexDetailName"></h3>
             <p id="dexDetailDesc"></p>
         </div>
@@ -668,7 +665,6 @@
                 <button onclick="downloadNotice()">下载通知书图片</button>
             </div>
 
-            <!-- 通知书预览 -->
             <div id="noticePreview">
                 <div class="np-title">录取通知书</div>
                 <div class="np-sub">奶龙大学 × 西南石油大学（联合培养）</div>
@@ -762,7 +758,7 @@
             try { localStorage.setItem('nailongDex', JSON.stringify(collected)); } catch (e) {}
         }
 
-        /* ========== 渲染图鉴 ========== */
+        /* ========== 渲染图鉴（图片懒加载） ========== */
         function renderDex() {
             var grid = document.getElementById('dexGrid');
             grid.innerHTML = '';
@@ -780,7 +776,7 @@
                 if (has) {
                     div.className += ' unlocked';
                     div.innerHTML =
-                        '<img src="' + item.img + '" alt="' + item.name + '">' +
+                        '<img src="' + item.img + '" loading="lazy" alt="' + item.name + '">' +
                         '<div class="dex-name">' + item.name + '</div>';
                     div.onclick = function() { showDexDetail(item); };
                 } else {
@@ -792,9 +788,16 @@
                     } else {
                         div.className += ' locked';
                         div.innerHTML =
-                            '<img src="' + item.img + '" alt="未收集">' +
+                            '<img src="' + item.img + '" loading="lazy" alt="未收集">' +
                             '<div class="dex-name">???</div>';
                     }
                 }
 
                 if (allCollected) div.className += ' all-gold';
+
+                grid.appendChild(div);
+            });
+        }
+
+        /* ========== 显示勋章详情 ========== */
+        function showDexDetail(item) {
