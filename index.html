@@ -801,3 +801,34 @@
 
         /* ========== 显示勋章详情 ========== */
         function showDexDetail(item) {
+            document.getElementById('dexDetailImg').src = item.img;
+            document.getElementById('dexDetailName').textContent = item.name;
+            document.getElementById('dexDetailDesc').textContent = item.desc;
+            document.getElementById('dexDetail').classList.add('show');
+        }
+        function closeDexDetail() {
+            document.getElementById('dexDetail').classList.remove('show');
+        }
+
+        var origOpenModal = openModal;
+        openModal = function(id) {
+            if (id === 'modalDex') renderDex();
+            origOpenModal(id);
+        };
+
+        /* ========== 每日一奶：随机抽取 ========== */
+        document.getElementById('dailyBtn').addEventListener('click', function() {
+            var normalList = DEX_DATA.filter(function(x) { return x.rarity === 'normal'; });
+            var hiddenList = DEX_DATA.filter(function(x) { return x.rarity === 'hidden'; });
+
+            var picked;
+
+            // 4 张隐藏款，每张 3%（合计 12%）
+            var roll = Math.random();
+            if (roll < 0.12) {
+                picked = hiddenList[Math.floor(Math.random() * hiddenList.length)];
+            } else {
+                picked = normalList[Math.floor(Math.random() * normalList.length)];
+            }
+
+            if (collected.indexOf(picked.id) ==
