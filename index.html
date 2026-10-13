@@ -874,7 +874,6 @@
 
     <!-- ===== 等级提示条 ===== -->
     <div class="level-tip" id="levelTip"></div>
-
     <script>
         /* ========== 弹窗控制 ========== */
         function openModal(id) {
@@ -1054,6 +1053,7 @@
             if (collected.indexOf(picked.id) === -1) collected.push(picked.id);
             cardCount[picked.id] = (cardCount[picked.id] || 0) + 1;
             saveAll();
+            refreshAvatarOwnership();
 
             setTimeout(function() {
                 var newLevel = getLevel();
@@ -1075,6 +1075,7 @@
 
         /* ========== 个人账户 ========== */
         function openAccount() {
+            refreshAvatarOwnership();
             renderAccount();
             openModal('modalAccount');
         }
@@ -1134,12 +1135,21 @@
             { id:"naihao", img:"naihao.png", name:"奶豪", how:"商城花 5000 奶币购买" }
         ];
 
-        /* 根据等级和购买状态解锁头像 */
+        /* 刷新头像拥有状态：等级 + 图鉴头像自动解锁 */
         function refreshAvatarOwnership() {
-            var lv = getLevel();
+            // 等级头像
             if (collected.length >= 3 && ownedAvatars.indexOf('naibin') === -1) ownedAvatars.push('naibin');
             if (collected.length >= 8 && ownedAvatars.indexOf('naijiang') === -1) ownedAvatars.push('naijiang');
             if (collected.length >= DEX_DATA.length && ownedAvatars.indexOf('naiwang') === -1) ownedAvatars.push('naiwang');
+
+            // 图鉴头像：收集对应图鉴即解锁
+            AVATARS.forEach(function(av) {
+                if (av.id === 'nairen' || av.id === 'naibin' || av.id === 'naijiang' || av.id === 'naiwang' || av.id === 'naihao') return;
+                if (collected.indexOf(av.id) !== -1 && ownedAvatars.indexOf(av.id) === -1) {
+                    ownedAvatars.push(av.id);
+                }
+            });
+
             saveAll();
         }
 
@@ -1226,9 +1236,9 @@
             }
         }
 
-        /* ========== 启动时刷新头像拥有状态 ========== */
+        /* ========== 启动时刷新一次 ========== */
         refreshAvatarOwnership();
     </script>
 
 </body>
-    </html>
+</html>
