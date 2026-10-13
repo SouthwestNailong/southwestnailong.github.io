@@ -735,6 +735,31 @@
             white-space: nowrap;
         }
         .level-tip.show { display: block; }
+
+        /* ===== 战斗结果提示条 ===== */
+        .battle-tip {
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 15px;
+            font-weight: bold;
+            z-index: 2000;
+            display: none;
+            white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+        }
+        .battle-tip.show { display: block; }
+        .battle-tip.win {
+            background: #27ae60;
+            color: #fff;
+        }
+        .battle-tip.lose {
+            background: #c0392b;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -909,6 +934,9 @@
 
     <!-- ===== 等级提示条 ===== -->
     <div class="level-tip" id="levelTip"></div>
+
+    <!-- ===== 战斗结果提示条 ===== -->
+    <div class="battle-tip" id="battleTip"></div>
     <script>
         /* ========== 弹窗控制 ========== */
         function openModal(id) {
@@ -1003,22 +1031,34 @@
             setTimeout(function() { tip.classList.remove('show'); }, 2500);
         }
 
-        /* ========== 打奶龙：胜负判定 + 奶币奖励/扣除 ========== */
+        /* ========== 打奶龙：按当前头像判定胜负 + 奶币奖励/扣除 ========== */
         var hitBtn = document.getElementById('hitBtn');
         var hitCountEl = document.getElementById('hitCount');
         hitCountEl.textContent = count;
+
+        function showBattleTip(msg, isWin) {
+            var tip = document.getElementById('battleTip');
+            tip.textContent = msg;
+            tip.className = 'battle-tip show ' + (isWin ? 'win' : 'lose');
+            setTimeout(function() {
+                tip.className = 'battle-tip';
+            }, 2200);
+        }
 
         hitBtn.addEventListener('click', function() {
             count++;
             hitCountEl.textContent = count;
             saveAll();
 
-            var level = getLevel();
             var winRate = 0.5;
-            if (ownedAvatars.indexOf('naizhuang') !== -1) {
+            if (currentAvatar === 'naizhuang') {
                 winRate = 1.0;
-            } else if (level === '奶王') {
+            } else if (currentAvatar === 'naiwang') {
                 winRate = 0.8;
+            } else if (currentAvatar === 'naijiang') {
+                winRate = 0.6;
+            } else {
+                winRate = 0.5;
             }
 
             var win = Math.random() < winRate;
@@ -1027,13 +1067,13 @@
                 var gain = Math.floor(Math.random() * 401) + 100;
                 coin += gain;
                 saveAll();
-                alert('💥 战胜奶龙！获得 ' + gain + ' 奶币！');
+                showBattleTip('💥 战胜奶龙！+' + gain + ' 奶币', true);
             } else {
                 var lose = Math.floor(Math.random() * 251) + 50;
                 if (coin < lose) lose = coin;
                 coin -= lose;
                 saveAll();
-                alert('😵 被奶龙打败……失去 ' + lose + ' 奶币。');
+                showBattleTip('😵 被奶龙打败……-' + lose + ' 奶币', false);
             }
 
             var shopCoinEl = document.getElementById('shopCoin');
