@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的首页</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
         /* ===== 加载动画 ===== */
         .loader {
@@ -831,4 +832,47 @@
                 picked = normalList[Math.floor(Math.random() * normalList.length)];
             }
 
-            if (collected.indexOf(picked.id) ==
+            if (collected.indexOf(picked.id) === -1) {
+                collected.push(picked.id);
+                saveCollected();
+            }
+
+            document.getElementById('dailyImg').src = picked.img;
+            document.getElementById('dailyName').textContent = picked.name;
+            var rar = document.getElementById('dailyRarity');
+            if (picked.rarity === 'hidden') {
+                rar.textContent = '⭐ 隐藏款 ⭐';
+                rar.className = 'result-rarity result-hidden';
+            } else {
+                rar.textContent = '普通款';
+                rar.className = 'result-rarity';
+            }
+            openModal('modalDaily');
+        });
+
+        /* ========== 通知书生成与下载 ========== */
+        function generateNotice() {
+            var name = document.getElementById('noticeName').value.trim() || '奶龙';
+            var major = document.getElementById('noticeMajor').value.trim() || '能源与奶龙工程';
+            document.getElementById('pvName').textContent = name;
+            document.getElementById('pvMajor').textContent = major;
+        }
+
+        function downloadNotice() {
+            var node = document.getElementById('noticePreview');
+
+            if (typeof html2canvas !== 'undefined') {
+                html2canvas(node, { scale: 2, backgroundColor: '#fdf6e3' }).then(function(canvas) {
+                    var link = document.createElement('a');
+                    link.download = '奶龙录取通知书.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                });
+            } else {
+                alert('请长按预览图保存，或刷新页面后重试。');
+            }
+        }
+    </script>
+
+</body>
+</html>
