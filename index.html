@@ -211,484 +211,523 @@
             z-index: 1;
         }
         .gif-img {
-            display: block;
-            max-width: 90%; height: auto;
-            margin: 20px auto 180px;
-            border-radius: 10px;
-            position: relative;
-            z-index: 1;
-        }
+    display: block;
+    max-width: 90%; height: auto;
+    margin: 20px auto 180px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+}
 
-        /* ===== 底部“每日一奶”按钮 ===== */
-        .daily-area {
-            text-align: center;
-            margin: 40px 0 200px;
-            position: relative;
-            z-index: 1;
-        }
-        .daily-btn {
-            position: relative;
-            width: 130px; height: 130px;
-            border-radius: 50%;
-            background-color: #FFD700;
-            color: #8a6d00;
-            font-size: 18px;
-            font-weight: bold;
-            border: 5px solid #FFC000;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-            transition: transform 0.1s;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .daily-btn:active { transform: scale(0.94); }
-        .daily-btn::before,
-        .daily-btn::after {
-            content: "";
-            position: absolute;
-            top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border-radius: 50%;
-            border: 4px solid #FFD700;
-            animation: ringOut 2s ease-out infinite;
-            pointer-events: none;
-        }
-        .daily-btn::after { animation-delay: 1s; }
-        @keyframes ringOut {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.6); opacity: 0; }
-        }
+/* ===== 底部“每日一奶”按钮 ===== */
+.daily-area {
+    text-align: center;
+    margin: 40px 0 200px;
+    position: relative;
+    z-index: 1;
+}
+.daily-btn {
+    position: relative;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background-color: #FFD700;
+    color: #8a6d00;
+    font-size: 18px;
+    font-weight: bold;
+    border: 5px solid #FFC000;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    transition: transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+}
+.daily-btn:active { transform: scale(0.94); }
+.daily-btn::before,
+.daily-btn::after {
+    content: "";
+    position: absolute;
+    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    border-radius: 50%;
+    border: 4px solid #FFD700;
+    animation: ringOut 2s ease-out infinite;
+    pointer-events: none;
+}
+.daily-btn::after { animation-delay: 1s; }
+@keyframes ringOut {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
 
-        /* ===== 通用弹窗 ===== */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
-        .modal.show { display: flex; }
-        .modal-content {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 80%;
-            max-height: 80%;
-            overflow: auto;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .modal-content img { max-width: 100%; border-radius: 10px; }
-        .close-btn {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #999;
-            border: none;
-            background: none;
-        }
-        .close-btn:hover { color: #333; }
+/* ===== 通用弹窗 ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+.modal.show { display: flex; }
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.modal-content img { max-width: 100%; border-radius: 10px; }
+.close-btn {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+    border: none;
+    background: none;
+}
+.close-btn:hover { color: #333; }
 
-        .go-btn {
-            display: block;
-            margin: 20px auto 0;
-            padding: 12px 30px;
-            font-size: 16px;
-            background-color: #FFD700;
-            color: #333;
-            border: 3px solid #FFC000;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            transition: all 0.2s;
-        }
-        .go-btn:hover { background-color: #FFC000; transform: scale(1.05); }
-        .go-btn:active { transform: scale(0.97); }
+.go-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 30px;
+    font-size: 16px;
+    background-color: #FFD700;
+    color: #333;
+    border: 3px solid #FFC000;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: all 0.2s;
+}
+.go-btn:hover { background-color: #FFC000; transform: scale(1.05); }
+.go-btn:active { transform: scale(0.97); }
 
-        .game-list { list-style: none; padding: 0; margin: 15px 0 0; }
-        .game-list li { margin: 8px 0; }
-        .game-list a {
-            display: block;
-            padding: 10px 15px;
-            background: #f9f9f9;
-            color: #0066cc;
-            text-decoration: none;
-            border-radius: 8px;
-            border: 1px solid #eee;
-            transition: all 0.2s;
-        }
-        .game-list a:hover { background: #FFD700; color: #333; border-color: #FFC000; }
-        .more-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #0066cc;
-            font-weight: bold;
-        }
-        /* ===== 每日一奶抽取结果 ===== */
-        .daily-result { text-align: center; }
-        .daily-result .result-img {
-            width: 260px; height: 260px;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-            margin-bottom: 16px;
-        }
-        .daily-result .result-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
-        }
-        .daily-result .result-rarity {
-            font-size: 14px;
-            color: #fff;
-            background: #9b59b6;
-            padding: 4px 14px;
-            border-radius: 20px;
-            display: inline-block;
-        }
-        .daily-result .result-hidden { background: #e74c3c; }
+.game-list { list-style: none; padding: 0; margin: 15px 0 0; }
+.game-list li { margin: 8px 0; }
+.game-list a {
+    display: block;
+    padding: 10px 15px;
+    background: #f9f9f9;
+    color: #0066cc;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: all 0.2s;
+}
+.game-list a:hover { background: #FFD700; color: #333; border-color: #FFC000; }
+.more-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #0066cc;
+    font-weight: bold;
+}
 
-        /* ===== 奶图鉴弹窗 ===== */
-        .dex-modal {
-            background: url("wood-bg.jpg") center/cover #8B5A2B;
-            border-radius: 15px;
-            padding: 24px;
-            max-width: 90%;
-            max-height: 85%;
-            overflow: auto;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-        .dex-title {
-            text-align: center;
-            color: #fff8e7;
-            font-size: 22px;
-            font-weight: bold;
-            margin: 0 0 18px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-        }
-        .dex-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-        }
-        .dex-item {
-            background: rgba(255, 255, 255, 0.1);
-            border: 3px solid #d4a76a;
-            border-radius: 12px;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
-        }
-        .dex-item img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 8px;
-            display: block;
-            margin-bottom: 6px;
-        }
-        .dex-item .dex-name {
-            font-size: 13px;
-            color: #fff8e7;
-            font-weight: bold;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-        }
-        .dex-item.locked {
-            filter: brightness(0.35) grayscale(1);
-            cursor: not-allowed;
-        }
-        .dex-item.hidden-locked {
-            cursor: not-allowed;
-            border-color: #e74c3c;
-        }
-        .dex-item.hidden-locked .hidden-mark {
-            width: 100%;
-            aspect-ratio: 1/1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(231, 76, 60, 0.15);
-            border-radius: 8px;
-            margin-bottom: 6px;
-            font-size: 44px;
-            color: #e74c3c;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
-        }
-        .dex-item.unlocked:hover {
-            transform: scale(1.05);
-            border-color: #FFD700;
-        }
-        .dex-item.hidden-rarity.unlocked {
-            border-color: #e74c3c;
-            box-shadow: 0 0 14px rgba(231, 76, 60, 0.9);
-        }
-        .dex-item.all-gold {
-            border-color: #FFD700 !important;
-            box-shadow: 0 0 16px rgba(255, 215, 0, 0.9),
-                        0 0 30px rgba(255, 215, 0, 0.6) !important;
-            animation: goldGlow 1.5s ease-in-out infinite alternate;
-        }
-        @keyframes goldGlow {
-            from { box-shadow: 0 0 12px rgba(255,215,0,0.7), 0 0 24px rgba(255,215,0,0.4); }
-            to   { box-shadow: 0 0 22px rgba(255,215,0,1),   0 0 44px rgba(255,215,0,0.7); }
-        }
+/* ===== 每日一奶抽取结果 ===== */
+.daily-result { text-align: center; }
+.daily-result .result-img {
+    width: 260px; height: 260px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+    margin-bottom: 16px;
+}
+.daily-result .result-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+.daily-result .result-rarity {
+    font-size: 14px;
+    color: #fff;
+    background: #9b59b6;
+    padding: 4px 14px;
+    border-radius: 20px;
+    display: inline-block;
+}
+.daily-result .result-hidden { background: #e74c3c; }
 
-        .dex-detail {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.75);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1100;
-        }
-        .dex-detail.show { display: flex; }
-        .dex-detail-content {
-            background: #fff;
-            padding: 24px;
-            border-radius: 15px;
-            max-width: 80%;
-            text-align: center;
-            position: relative;
-        }
-        .dex-detail-content img {
-            width: 220px;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 14px;
-            margin-bottom: 14px;
-        }
-        .dex-detail-content h3 { margin: 0 0 8px; color: #333; }
-        .dex-detail-content p { margin: 0; color: #666; font-size: 14px; }
-        .dex-detail-close {
-            position: absolute;
-            top: 8px; right: 14px;
-            font-size: 24px;
-            color: #999;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
+/* ===== 奶图鉴弹窗 ===== */
+.dex-modal {
+    background: url("wood-bg.jpg") center/cover #8B5A2B;
+    border-radius: 15px;
+    padding: 24px;
+    max-width: 90%;
+    max-height: 85%;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+.dex-title {
+    text-align: center;
+    color: #fff8e7;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0 0 18px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+.dex-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+.dex-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid #d4a76a;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+.dex-item img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 6px;
+}
+.dex-item .dex-name {
+    font-size: 13px;
+    color: #fff8e7;
+    font-weight: bold;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+.dex-item.locked {
+    filter: brightness(0.35) grayscale(1);
+    cursor: not-allowed;
+}
+.dex-item.hidden-locked {
+    cursor: not-allowed;
+    border-color: #e74c3c;
+}
+.dex-item.hidden-locked .hidden-mark {
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(231, 76, 60, 0.15);
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-size: 44px;
+    color: #e74c3c;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
+}
+.dex-item.unlocked:hover {
+    transform: scale(1.05);
+    border-color: #FFD700;
+}
+.dex-item.hidden-rarity.unlocked {
+    border-color: #e74c3c;
+    box-shadow: 0 0 14px rgba(231, 76, 60, 0.9);
+}
+.dex-item.all-gold {
+    border-color: #FFD700 !important;
+    box-shadow: 0 0 16px rgba(255, 215, 0, 0.9),
+                0 0 30px rgba(255, 215, 0, 0.6) !important;
+    animation: goldGlow 1.5s ease-in-out infinite alternate;
+}
+@keyframes goldGlow {
+    from { box-shadow: 0 0 12px rgba(255,215,0,0.7), 0 0 24px rgba(255,215,0,0.4); }
+    to   { box-shadow: 0 0 22px rgba(255,215,0,1),   0 0 44px rgba(255,215,0,0.7); }
+}
 
+.dex-detail {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.75);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+.dex-detail.show { display: flex; }
+.dex-detail-content {
+    background: #fff;
+    padding: 24px;
+    border-radius: 15px;
+    max-width: 80%;
+    text-align: center;
+    position: relative;
+}
+.dex-detail-content img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 14px;
+}
+.dex-detail-content h3 { margin: 0 0 8px; color: #333; }
+.dex-detail-content p { margin: 0; color: #666; font-size: 14px; }
+.dex-detail-close {
+    position: absolute;
+    top: 8px; right: 14px;
+    font-size: 24px;
+    color: #999;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
         /* ===== 录取通知书弹窗 ===== */
-        .notice-modal {
-            background: #fff;
-            border-radius: 15px;
-            padding: 24px;
-            max-width: 90%;
-            max-height: 88%;
-            overflow: auto;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-        }
-        .notice-modal h2 {
-            font-size: 22px;
-            color: #c0392b;
-            text-align: center;
-            margin: 0 0 22px;
-            font-weight: bold;
-        }
-        .notice-label {
-            font-size: 15px;
-            font-weight: bold;
-            color: #333;
-            margin: 14px 0 6px;
-        }
-        .notice-input {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 12px 14px;
-            font-size: 15px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            outline: none;
-        }
-        .notice-input:focus { border-color: #c0392b; }
-        .notice-btn-row {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        .notice-btn-row button {
-            flex: 1;
-            padding: 14px 0;
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #c0392b;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .notice-btn-row button:hover { background-color: #a93226; }
-        .notice-btn-row button:active { transform: scale(0.97); }
+.notice-modal {
+    background: #fff;
+    border-radius: 15px;
+    padding: 24px;
+    max-width: 90%;
+    max-height: 88%;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+.notice-modal h2 {
+    font-size: 22px;
+    color: #c0392b;
+    text-align: center;
+    margin: 0 0 22px;
+    font-weight: bold;
+}
+.notice-label {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    margin: 14px 0 6px;
+}
+.notice-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+.notice-input:focus { border-color: #c0392b; }
+.notice-btn-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+.notice-btn-row button {
+    flex: 1;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #c0392b;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.notice-btn-row button:hover { background-color: #a93226; }
+.notice-btn-row button:active { transform: scale(0.97); }
 
-        #noticePreview {
-            margin-top: 24px;
-            background: #fdf6e3;
-            border: 8px solid #c0392b;
-            padding: 26px 22px 18px;
-            box-sizing: border-box;
-        }
-        #noticePreview .np-title {
-            text-align: center;
-            font-size: 32px;
-            font-weight: bold;
-            color: #c0392b;
-            letter-spacing: 6px;
-            margin: 6px 0 10px;
-        }
-        #noticePreview .np-sub {
-            text-align: center;
-            font-size: 18px;
-            color: #c0392b;
-            margin-bottom: 26px;
-        }
-        #noticePreview .np-body {
-            font-size: 17px;
-            color: #333;
-            line-height: 2.1;
-        }
-        #noticePreview .np-body b { color: #c0392b; }
-        #noticePreview .np-foot {
-            text-align: center;
-            font-size: 15px;
-            color: #a0784a;
-            margin-top: 26px;
-        }
-        #noticePreview .np-links {
-            text-align: center;
-            font-size: 13px;
-            color: #888;
-            margin-top: 14px;
-            line-height: 1.8;
-        }
+#noticePreview {
+    margin-top: 24px;
+    background: #fdf6e3;
+    border: 8px solid #c0392b;
+    padding: 26px 22px 18px;
+    box-sizing: border-box;
+}
+#noticePreview .np-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #c0392b;
+    letter-spacing: 6px;
+    margin: 6px 0 10px;
+}
+#noticePreview .np-sub {
+    text-align: center;
+    font-size: 18px;
+    color: #c0392b;
+    margin-bottom: 26px;
+}
+#noticePreview .np-body {
+    font-size: 17px;
+    color: #333;
+    line-height: 2.1;
+}
+#noticePreview .np-body b { color: #c0392b; }
+#noticePreview .np-foot {
+    text-align: center;
+    font-size: 15px;
+    color: #a0784a;
+    margin-top: 26px;
+}
+#noticePreview .np-links {
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    margin-top: 14px;
+    line-height: 1.8;
+}
 
-        /* ===== 个人账户弹窗 ===== */
-        .account-modal {
-            background: #fffaf0;
-            border: 6px solid #d4a76a;
-            border-radius: 18px;
-            padding: 24px;
-            max-width: 90%;
-            max-height: 88%;
-            overflow: auto;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-        }
-        .account-modal h2 {
-            text-align: center;
-            color: #8B5A2B;
-            margin: 0 0 8px;
-            font-size: 22px;
-        }
-        .account-level {
-            text-align: center;
-            font-size: 15px;
-            color: #c0392b;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .account-name-row {
-            text-align: center;
-            margin-bottom: 14px;
-        }
-        .account-name-row input {
-            width: 60%;
-            box-sizing: border-box;
-            padding: 8px 12px;
-            font-size: 14px;
-            border: 2px solid #d4a76a;
-            border-radius: 10px;
-            outline: none;
-            text-align: center;
-            background: #fff;
-        }
-        .account-name-row button {
-            margin-left: 8px;
-            padding: 8px 14px;
-            font-size: 14px;
-            background-color: #8B5A2B;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .avatar-box {
-            text-align: center;
-            margin-bottom: 18px;
-        }
-        .avatar-box img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid #FFD700;
-            box-shadow: 0 0 20px rgba(255,215,0,0.7);
-            background: #fff;
-        }
-        .avatar-title {
-            font-size: 14px;
-            color: #8B5A2B;
-            font-weight: bold;
-            margin: 16px 0 8px;
-            text-align: center;
-        }
-        .avatar-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        .avatar-item {
-            text-align: center;
-            cursor: pointer;
-            border-radius: 10px;
-            padding: 6px;
-            border: 2px solid transparent;
-            transition: all 0.2s;
-        }
-        .avatar-item img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 8px;
-            display: block;
-            margin-bottom: 4px;
-        }
-        .avatar-item .av-name {
-            font-size: 11px;
-            color: #5b3a16;
-            font-weight: bold;
-        }
-        .avatar-item.av-locked {
-            filter: brightness(0.35) grayscale(1);
-            cursor: pointer;
-        }
-        .avatar-item.av-unlocked:hover {
-            border-color: #FFD700;
-            transform: scale(1.05);
-        }
-        .avatar-item.av-current {
-            border-color: #c0392b;
-            box-shadow: 0 0 12px rgba(192,57,43,0.7);
-        }
-        .avatar-item.av-hidden {
-            border-color: #e74c3c;
-        }
-        .avatar-item.av-hidden.av-unlocked {
-            box-shadow: 0 0 14px rgba(231,76,60,0.9);
-        }
+/* ===== 个人账户弹窗 ===== */
+.account-modal {
+    background: #fffaf0;
+    border: 6px solid #d4a76a;
+    border-radius: 18px;
+    padding: 24px;
+    max-width: 90%;
+    max-height: 88%;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+.account-modal h2 {
+    text-align: center;
+    color: #8B5A2B;
+    margin: 0 0 8px;
+    font-size: 22px;
+}
+.account-level {
+    text-align: center;
+    font-size: 15px;
+    color: #c0392b;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.account-name-row {
+    text-align: center;
+    margin-bottom: 14px;
+}
+.account-name-row input {
+    width: 60%;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 2px solid #d4a76a;
+    border-radius: 10px;
+    outline: none;
+    text-align: center;
+    background: #fff;
+}
+.account-name-row button {
+    margin-left: 8px;
+    padding: 8px 14px;
+    font-size: 14px;
+    background-color: #8B5A2B;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.avatar-box {
+    text-align: center;
+    margin-bottom: 18px;
+}
+.avatar-box img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #FFD700;
+    box-shadow: 0 0 20px rgba(255,215,0,0.7);
+    background: #fff;
+}
+.avatar-title {
+    font-size: 14px;
+    color: #8B5A2B;
+    font-weight: bold;
+    margin: 16px 0 8px;
+    text-align: center;
+}
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+.avatar-item {
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 6px;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+}
+.avatar-item img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 4px;
+}
+.avatar-item .av-name {
+    font-size: 11px;
+    color: #5b3a16;
+    font-weight: bold;
+}
+.avatar-item.av-locked {
+    filter: brightness(0.35) grayscale(1);
+    cursor: pointer;
+}
+.avatar-item.av-unlocked:hover {
+    border-color: #FFD700;
+    transform: scale(1.05);
+}
+.avatar-item.av-current {
+    border-color: #c0392b;
+    box-shadow: 0 0 12px rgba(192,57,43,0.7);
+}
+.avatar-item.av-hidden {
+    border-color: #e74c3c;
+}
+.avatar-item.av-hidden.av-unlocked {
+    box-shadow: 0 0 14px rgba(231,76,60,0.9);
+}
 
+/* ===== 头像解锁条件木质窗口 ===== */
+.avatar-how-modal {
+    background: url("wood-bg.jpg") center/cover #8B5A2B;
+    border-radius: 15px;
+    padding: 28px;
+    max-width: 80%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    color: #fff8e7;
+}
+.avatar-how-modal h3 {
+    margin: 0 0 14px;
+    font-size: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+.avatar-how-modal img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #FFD700;
+    margin-bottom: 14px;
+    box-shadow: 0 0 20px rgba(255,215,0,0.7);
+}
+.avatar-how-modal p {
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 0;
+}
+.avatar-how-close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    background: none;
+    }
         /* ===== 商城弹窗 ===== */
         .shop-modal {
             background: #fffaf0;
@@ -820,6 +859,7 @@
         .battle-tip.lose { background: #c0392b; color: #fff; }
     </style>
 </head>
+
 <body>
 
     <!-- 加载动画层 -->
@@ -969,50 +1009,63 @@
         </div>
     </div>
 
+    <!-- ===== 头像解锁条件木质窗口 ===== -->
+    <div class="modal" id="modalAvatarHow">
+        <div class="avatar-how-modal">
+            <button class="avatar-how-close" onclick="closeModal('modalAvatarHow')">×</button>
+            <img id="howAvatarImg" src="" alt="头像">
+            <h3 id="howAvatarName"></h3>
+            <p id="howAvatarDesc"></p>
+        </div>
+    </div>
     <!-- ===== 商城弹窗 ===== -->
-    <div class="modal" id="modalShop">
-        <div class="shop-modal">
-            <button class="close-btn" onclick="closeModal('modalShop')">×</button>
-            <h2>🛒 奶币商城</h2>
-            <div class="shop-coin">当前奶币：<span id="shopCoin">0</span></div>
+<div class="modal" id="modalShop">
+    <div class="shop-modal">
+        <button class="close-btn" onclick="closeModal('modalShop')">×</button>
+        <h2>🛒 奶币商城</h2>
+        <div class="shop-coin">当前奶币：<span id="shopCoin">0</span></div>
 
-            <div class="shop-section">出售图鉴卡（只能卖多余的）</div>
-            <div id="sellList"></div>
+        <div class="shop-section">出售图鉴卡（只能卖多余的）</div>
+        <div id="sellList"></div>
 
-            <div class="shop-section">购买项目</div>
-            <div class="shop-item">
-                <div class="si-info"><b>奶钻</b> · 500 奶币 · 已有 <span id="diamondNum">0</span> 颗</div>
-                <button onclick="buyItem('diamond', 500)">购买</button>
-            </div>
-            <div class="shop-item">
-                <div class="si-info"><b>奶豪头像</b> · 5000 奶币</div>
-                <button onclick="buyItem('haohao', 5000)">购买</button>
-            </div>
+        <div class="shop-section">购买未获得卡片（价格 = 出售价 × 2）</div>
+        <div id="buyList"></div>
+
+        <div class="shop-section">购买项目</div>
+        <div class="shop-item">
+            <div class="si-info"><b>奶钻</b> · 500 奶币 · 已有 <span id="diamondNum">0</span> 颗</div>
+            <button onclick="buyItem('diamond', 500)">购买</button>
+        </div>
+        <div class="shop-item">
+            <div class="si-info"><b>奶豪头像</b> · 5000 奶币</div>
+            <button onclick="buyItem('haohao', 5000)">购买</button>
         </div>
     </div>
+</div>
 
-    <!-- ===== 课程弹窗 ===== -->
-    <div class="modal" id="modalCourse">
-        <div class="course-modal-content">
-            <button class="close-btn" onclick="closeModal('modalCourse')">×</button>
-            <h2>📚 课程视频</h2>
+<!-- ===== 课程弹窗 ===== -->
+<div class="modal" id="modalCourse">
+    <div class="course-modal-content">
+        <button class="close-btn" onclick="closeModal('modalCourse')">×</button>
+        <h2>📚 课程视频</h2>
 
-            <video id="courseVideo" controls preload="none" src="jiaoxue1.mp4"></video>
+        <video id="courseVideo" controls preload="none" src="jiaoxue1.mp4"></video>
 
-            <div style="margin-top:14px; display:flex; gap:10px; justify-content:center;">
-                <button class="go-btn" style="margin-top:0;" onclick="switchCourse('jiaoxue1.mp4')">课程1</button>
-                <button class="go-btn" style="margin-top:0;" onclick="switchCourse('jiaoxue2.mp4')">课程2</button>
-            </div>
-
-            <div class="course-source">视频来源于网络</div>
+        <div style="margin-top:14px; display:flex; gap:10px; justify-content:center;">
+            <button class="go-btn" style="margin-top:0;" onclick="switchCourse('jiaoxue1.mp4')">课程1</button>
+            <button class="go-btn" style="margin-top:0;" onclick="switchCourse('jiaoxue2.mp4')">课程2</button>
         </div>
+
+        <div class="course-source">视频来源于网络</div>
     </div>
+</div>
 
-    <!-- ===== 等级提示条 ===== -->
-    <div class="level-tip" id="levelTip"></div>
+<!-- ===== 等级提示条 ===== -->
+<div class="level-tip" id="levelTip"></div>
 
-    <!-- ===== 战斗结果提示条 ===== -->
-    <script>
+<!-- ===== 战斗结果提示条 ===== -->
+<div class="battle-tip" id="battleTip"></div>
+<script>
         /* ========== 弹窗控制 ========== */
         function openModal(id) {
             document.getElementById(id).classList.add('show');
@@ -1059,10 +1112,19 @@
             { id:"naigou", img:"naigou.jpeg", name:"奶狗", desc:"大狗叫！", rarity:"normal" },
             { id:"naidan", img:"naidan.jpg", name:"奶蛋", desc:"俺无敌？！", rarity:"normal" },
             { id:"dounai", img:"dounai.jpeg", name:"豆奶", desc:"某个AI的衍生体，为什么会变成这个样子...", rarity:"normal" },
+            { id:"jiutoushe", img:"jiutoushe.jpg", name:"九头奶蛇", desc:"拥有九头的奶蛇", rarity:"normal" },
+            { id:"naibei", img:"naibei.jpg", name:"奶杯", desc:"谁不想要一个能装茶的奶杯呢？", rarity:"normal" },
+            { id:"naitu", img:"naitu.jpeg", name:"奶兔", desc:"龟兔赛跑中的输家，不过是奶龟和奶兔", rarity:"normal" },
+            { id:"naigui", img:"naigui.jpg", name:"奶龟", desc:"龟兔赛跑的最终赢家，不过是奶龟和奶兔", rarity:"normal" },
+            { id:"naiya", img:"naiya.jpg", name:"奶鸦", desc:"奶鸦喝水，人尽皆知的小故事", rarity:"normal" },
+            { id:"xixinaisi", img:"xixinaisi.jpg", name:"西西奶斯", desc:"正在推动巨石的大力奶神", rarity:"normal" },
+            { id:"naijin", img:"naijin.jpg", name:"奶警", desc:"正在执法中...", rarity:"normal" },
             { id:"naizhuang", img:"naizhuang.jpeg", name:"奶壮", desc:"不折不扣的奶中硬汉，必定打败奶龙", rarity:"hidden" },
             { id:"naidan_lun", img:"naidan_lun.png", name:"奶蛋（轮椅）", desc:"满脸写满无敌的奶蛋，真的需要操作吗？", rarity:"hidden" },
             { id:"lienai", img:"lienai.jpg", name:"猎奶", desc:"众神之父会庇佑你们！", rarity:"hidden" },
-            { id:"rain", img:"Image_1791022800868_721.jpg", name:"雨中奶龙", desc:"雨中的奶龙，伦敦未必有他忧郁", rarity:"hidden" }
+            { id:"rain", img:"Image_1791022800868_721.jpg", name:"雨中奶龙", desc:"雨中的奶龙，伦敦未必有他忧郁", rarity:"hidden" },
+            { id:"xiaonaike", img:"xiaonaike.jpg", name:"肖奶客的救赎", desc:"自由的龙儿是关不住的！", rarity:"hidden" },
+            { id:"naiwa_xifu", img:"naiwa_xifu.jpg", name:"奶蛙（西服）", desc:"进入上层的奶蛙，散发着贵族气息", rarity:"hidden" }
         ];
 
         /* ========== 资源与状态 ========== */
@@ -1074,6 +1136,10 @@
         var diamondCount = 0;
         var accountName = "";
         var count = 0;
+        var dailyCount = 0;
+        var dailyDate = "";
+        var hitCountToday = 0;
+        var hitDate = "";
 
         try {
             var s1 = localStorage.getItem('nailongDex');
@@ -1092,6 +1158,14 @@
             if (s7) accountName = s7;
             var s8 = localStorage.getItem('nailongHitCount');
             if (s8 !== null) count = parseInt(s8, 10) || 0;
+            var s9 = localStorage.getItem('nailongDailyCount');
+            if (s9) dailyCount = parseInt(s9, 10) || 0;
+            var s10 = localStorage.getItem('nailongDailyDate');
+            if (s10) dailyDate = s10;
+            var s11 = localStorage.getItem('nailongHitToday');
+            if (s11) hitCountToday = parseInt(s11, 10) || 0;
+            var s12 = localStorage.getItem('nailongHitDate');
+            if (s12) hitDate = s12;
         } catch (e) {}
 
         function saveAll() {
@@ -1104,7 +1178,16 @@
                 localStorage.setItem('nailongDiamond', diamondCount);
                 localStorage.setItem('nailongName', accountName);
                 localStorage.setItem('nailongHitCount', count);
+                localStorage.setItem('nailongDailyCount', dailyCount);
+                localStorage.setItem('nailongDailyDate', dailyDate);
+                localStorage.setItem('nailongHitToday', hitCountToday);
+                localStorage.setItem('nailongHitDate', hitDate);
             } catch (e) {}
+        }
+
+        function today() {
+            var d = new Date();
+            return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
         }
 
         /* ========== 等级 ========== */
@@ -1123,7 +1206,7 @@
             setTimeout(function() { tip.classList.remove('show'); }, 2500);
         }
 
-        /* ========== 打奶龙 ========== */
+        /* ========== 打奶龙（每天限 5 次） ========== */
         var hitBtn = document.getElementById('hitBtn');
         var hitCountEl = document.getElementById('hitCount');
         hitCountEl.textContent = count;
@@ -1136,6 +1219,15 @@
         }
 
         hitBtn.addEventListener('click', function() {
+            var t = today();
+            if (hitDate !== t) { hitDate = t; hitCountToday = 0; }
+
+            if (hitCountToday >= 5) {
+                showBattleTip('今天打奶龙次数已用完（每日 5 次）', false);
+                return;
+            }
+
+            hitCountToday++;
             count++;
             hitCountEl.textContent = count;
             saveAll();
@@ -1164,7 +1256,7 @@
             if (shopCoinEl) shopCoinEl.textContent = coin;
         });
 
-        /* ========== 加载动画：固定 4 秒后隐藏 ========== */
+        /* ========== 加载动画 ========== */
         setTimeout(function() {
             document.getElementById('loader').classList.add('hide');
         }, 4000);
@@ -1225,17 +1317,33 @@
             origOpenModal(id);
         };
 
-        /* ========== 每日一奶 ========== */
+        /* ========== 每日一奶（每天限 5 次，优先未获得） ========== */
         document.getElementById('dailyBtn').addEventListener('click', function() {
+            var t = today();
+            if (dailyDate !== t) { dailyDate = t; dailyCount = 0; }
+
+            if (dailyCount >= 5) {
+                showBattleTip('今天每日一奶次数已用完（每日 5 次）', false);
+                return;
+            }
+            dailyCount++;
+
             var normalList = DEX_DATA.filter(function(x) { return x.rarity === 'normal'; });
             var hiddenList = DEX_DATA.filter(function(x) { return x.rarity === 'hidden'; });
 
+            var uncollectedNormal = normalList.filter(function(x) { return collected.indexOf(x.id) === -1; });
+            var uncollectedHidden = hiddenList.filter(function(x) { return collected.indexOf(x.id) === -1; });
+
             var picked;
             var roll = Math.random();
-            if (roll < 0.12) {
-                picked = hiddenList[Math.floor(Math.random() * hiddenList.length)];
+            if (roll < 0.12 && uncollectedHidden.length > 0) {
+                picked = uncollectedHidden[Math.floor(Math.random() * uncollectedHidden.length)];
+            } else if (uncollectedNormal.length > 0) {
+                picked = uncollectedNormal[Math.floor(Math.random() * uncollectedNormal.length)];
+            } else if (uncollectedHidden.length > 0) {
+                picked = uncollectedHidden[Math.floor(Math.random() * uncollectedHidden.length)];
             } else {
-                picked = normalList[Math.floor(Math.random() * normalList.length)];
+                picked = DEX_DATA[Math.floor(Math.random() * DEX_DATA.length)];
             }
 
             var oldLevel = getLevel();
@@ -1315,7 +1423,10 @@
                 saveAll();
                 renderAccount();
             } else {
-                alert('【' + av.name + '】获取方式：' + av.how);
+                document.getElementById('howAvatarImg').src = av.img;
+                document.getElementById('howAvatarName').textContent = av.name;
+                document.getElementById('howAvatarDesc').textContent = '获取方式：' + av.how;
+                openModal('modalAvatarHow');
             }
         }
 
@@ -1328,6 +1439,17 @@
             { id:"naishu", img:"naishu.jpg", name:"奶鼠", how:"收集奶鼠图鉴", rarity:"normal" },
             { id:"naishe", img:"naishe.png", name:"奶蛇", how:"收集奶蛇图鉴", rarity:"normal" },
             { id:"yenai", img:"yenai.jpg", name:"椰奶", how:"收集椰奶图鉴", rarity:"normal" },
+            { id:"naike", img:"naike.jpeg", name:"奶蝌", how:"收集奶蝌图鉴", rarity:"normal" },
+            { id:"naidou", img:"naidou.jpeg", name:"奶豆", how:"收集奶豆图鉴", rarity:"normal" },
+            { id:"naixia", img:"naixia.jpeg", name:"奶蛛侠", how:"收集奶蛛侠图鉴", rarity:"normal" },
+            { id:"dounai", img:"dounai.jpeg", name:"豆奶", how:"收集豆奶图鉴", rarity:"normal" },
+            { id:"jiutoushe", img:"jiutoushe.jpg", name:"九头奶蛇", how:"收集九头奶蛇图鉴", rarity:"normal" },
+            { id:"naibei", img:"naibei.jpg", name:"奶杯", how:"收集奶杯图鉴", rarity:"normal" },
+            { id:"naitu", img:"naitu.jpeg", name:"奶兔", how:"收集奶兔图鉴", rarity:"normal" },
+            { id:"naigui", img:"naigui.jpg", name:"奶龟", how:"收集奶龟图鉴", rarity:"normal" },
+            { id:"naiya", img:"naiya.jpg", name:"奶鸦", how:"收集奶鸦图鉴", rarity:"normal" },
+            { id:"xixinaisi", img:"xixinaisi.jpg", name:"西西奶斯", how:"收集西西奶斯图鉴", rarity:"normal" },
+            { id:"naijin", img:"naijin.jpg", name:"奶警", how:"收集奶警图鉴", rarity:"normal" },
             { id:"naibin", img:"naibin.png", name:"奶兵", how:"收集任意 3 张不同图鉴卡解锁", rarity:"normal" },
             { id:"naijiang", img:"naijiang.png", name:"奶将", how:"收集任意 8 张不同图鉴卡解锁", rarity:"normal" },
             { id:"naiwang", img:"naiwang.png", name:"奶王", how:"收集全部图鉴卡解锁", rarity:"normal" },
@@ -1335,7 +1457,9 @@
             { id:"naizhuang", img:"naizhuang.jpeg", name:"奶壮", how:"收集奶壮图鉴（隐藏款）", rarity:"hidden" },
             { id:"naidan_lun", img:"naidan_lun.png", name:"奶蛋（轮椅）", how:"收集奶蛋（轮椅）图鉴（隐藏款）", rarity:"hidden" },
             { id:"lienai", img:"lienai.jpg", name:"猎奶", how:"收集猎奶图鉴（隐藏款）", rarity:"hidden" },
-            { id:"rain", img:"Image_1791022800868_721.jpg", name:"雨中奶龙", how:"收集雨中奶龙图鉴（隐藏款）", rarity:"hidden" }
+            { id:"rain", img:"Image_1791022800868_721.jpg", name:"雨中奶龙", how:"收集雨中奶龙图鉴（隐藏款）", rarity:"hidden" },
+            { id:"xiaonaike", img:"xiaonaike.jpg", name:"肖奶客的救赎", how:"收集肖奶客的救赎图鉴（隐藏款）", rarity:"hidden" },
+            { id:"naiwa_xifu", img:"naiwa_xifu.jpg", name:"奶蛙（西服）", how:"收集奶蛙（西服）图鉴（隐藏款）", rarity:"hidden" }
         ];
 
         function refreshAvatarOwnership() {
@@ -1361,18 +1485,30 @@
 
             var list = document.getElementById('sellList');
             list.innerHTML = '';
-
             DEX_DATA.forEach(function(item) {
                 var have = cardCount[item.id] || 0;
                 var canSell = have > 1;
                 var price = item.rarity === 'hidden' ? 500 : 100;
-
                 var div = document.createElement('div');
                 div.className = 'shop-item';
                 div.innerHTML =
                     '<div class="si-info">' + item.name + ' ×' + have + ' · 售价 <b>' + price + '</b> 奶币</div>' +
                     '<button ' + (canSell ? '' : 'disabled') + ' onclick="sellCard(\'' + item.id + '\')">出售</button>';
                 list.appendChild(div);
+            });
+
+            var buyList = document.getElementById('buyList');
+            buyList.innerHTML = '';
+            DEX_DATA.forEach(function(item) {
+                var have = cardCount[item.id] || 0;
+                if (have > 0) return;
+                var price = item.rarity === 'hidden' ? 1000 : 200;
+                var div = document.createElement('div');
+                div.className = 'shop-item';
+                div.innerHTML =
+                    '<div class="si-info">' + item.name + ' · 价格 <b>' + price + '</b> 奶币</div>' +
+                    '<button onclick="buyCard(\'' + item.id + '\', ' + price + ')">购买</button>';
+                buyList.appendChild(div);
             });
         }
 
@@ -1388,6 +1524,20 @@
             coin += price;
             saveAll();
             renderShop();
+        }
+
+        function buyCard(id, price) {
+            if (coin < price) {
+                alert('奶币不足，还差 ' + (price - coin) + ' 奶币。');
+                return;
+            }
+            coin -= price;
+            if (collected.indexOf(id) === -1) collected.push(id);
+            cardCount[id] = (cardCount[id] || 0) + 1;
+            saveAll();
+            refreshAvatarOwnership();
+            renderShop();
+            alert('🎉 成功购买并解锁图鉴卡！');
         }
 
         function buyItem(type, cost) {
@@ -1436,10 +1586,9 @@
             }
         }
 
-        /* ========== 启动时刷新一次 ========== */
+        /* ========== 启动 ========== */
         refreshAvatarOwnership();
     </script>
 
 </body>
-</html>
-    <div class="battle-tip" id="battleTip"></div>
+    </html>
