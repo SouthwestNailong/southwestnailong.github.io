@@ -717,18 +717,10 @@
             try { localStorage.setItem('nailongHitCount', count); } catch (e) {}
         });
 
-        /* ========== 加载动画：强制停留 4 秒 ========== */
-        var startTime = Date.now();
-        function hideLoader() {
-            var elapsed = Date.now() - startTime;
-            var remain = 4000 - elapsed;
-            if (remain > 0) {
-                setTimeout(hideLoader, remain);
-            } else {
-                document.getElementById('loader').classList.add('hide');
-            }
-        }
-        hideLoader();
+        /* ========== 加载动画：固定 4 秒后隐藏 ========== */
+        setTimeout(function() {
+            document.getElementById('loader').classList.add('hide');
+        }, 4000);
 
         /* ========== 奶图鉴数据 ========== */
         var DEX_DATA = [
