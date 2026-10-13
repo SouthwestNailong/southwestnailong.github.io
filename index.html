@@ -294,7 +294,6 @@
             color: #0066cc;
             font-weight: bold;
         }
-
         /* ===== 每日一奶抽取结果 ===== */
         .daily-result { text-align: center; }
         .daily-result .result-img {
@@ -738,7 +737,6 @@
         .level-tip.show { display: block; }
     </style>
 </head>
-
 <body>
 
     <!-- 加载动画层 -->
@@ -927,26 +925,6 @@
             });
         });
 
-        /* ========== 打奶龙计数 ========== */
-        var hitBtn = document.getElementById('hitBtn');
-        var hitCountEl = document.getElementById('hitCount');
-        var count = 0;
-        try {
-            var saved = localStorage.getItem('nailongHitCount');
-            if (saved !== null) count = parseInt(saved, 10) || 0;
-        } catch (e) {}
-        hitCountEl.textContent = count;
-        hitBtn.addEventListener('click', function() {
-            count++;
-            hitCountEl.textContent = count;
-            try { localStorage.setItem('nailongHitCount', count); } catch (e) {}
-        });
-
-        /* ========== 加载动画：固定 4 秒后隐藏 ========== */
-        setTimeout(function() {
-            document.getElementById('loader').classList.add('hide');
-        }, 4000);
-
         /* ========== 图鉴数据 ========== */
         var DEX_DATA = [
             { id:"yenai", img:"yenai.jpg", name:"椰奶", desc:"由椰子变异而成，会能吃吗？", rarity:"normal" },
@@ -961,7 +939,7 @@
             { id:"naigou", img:"naigou.jpeg", name:"奶狗", desc:"大狗叫！", rarity:"normal" },
             { id:"naidan", img:"naidan.jpg", name:"奶蛋", desc:"俺无敌？！", rarity:"normal" },
             { id:"dounai", img:"dounai.jpeg", name:"豆奶", desc:"某个AI的衍生体，为什么会变成这个样子...", rarity:"normal" },
-            { id:"naizhuang", img:"naizhuang.jpeg", name:"奶壮", desc:"不折不扣的奶中硬汉", rarity:"hidden" },
+            { id:"naizhuang", img:"naizhuang.jpeg", name:"奶壮", desc:"不折不扣的奶中硬汉，必定打败奶龙", rarity:"hidden" },
             { id:"naidan_lun", img:"naidan_lun.png", name:"奶蛋（轮椅）", desc:"满脸写满无敌的奶蛋，真的需要操作吗？", rarity:"hidden" },
             { id:"lienai", img:"lienai.jpg", name:"猎奶", desc:"众神之父会庇佑你们！", rarity:"hidden" },
             { id:"rain", img:"Image_1791022800868_721.jpg", name:"雨中奶龙", desc:"雨中的奶龙，伦敦未必有他忧郁", rarity:"hidden" }
@@ -975,6 +953,7 @@
         var ownedAvatars = ["nairen"];
         var diamondCount = 0;
         var accountName = "";
+        var count = 0;
 
         try {
             var s1 = localStorage.getItem('nailongDex');
@@ -991,6 +970,8 @@
             if (s6) diamondCount = parseInt(s6, 10) || 0;
             var s7 = localStorage.getItem('nailongName');
             if (s7) accountName = s7;
+            var s8 = localStorage.getItem('nailongHitCount');
+            if (s8 !== null) count = parseInt(s8, 10) || 0;
         } catch (e) {}
 
         function saveAll() {
@@ -1002,6 +983,7 @@
                 localStorage.setItem('nailongOwnedAvatars', JSON.stringify(ownedAvatars));
                 localStorage.setItem('nailongDiamond', diamondCount);
                 localStorage.setItem('nailongName', accountName);
+                localStorage.setItem('nailongHitCount', count);
             } catch (e) {}
         }
 
@@ -1020,6 +1002,48 @@
             tip.classList.add('show');
             setTimeout(function() { tip.classList.remove('show'); }, 2500);
         }
+
+        /* ========== 打奶龙：胜负判定 + 奶币奖励/扣除 ========== */
+        var hitBtn = document.getElementById('hitBtn');
+        var hitCountEl = document.getElementById('hitCount');
+        hitCountEl.textContent = count;
+
+        hitBtn.addEventListener('click', function() {
+            count++;
+            hitCountEl.textContent = count;
+            saveAll();
+
+            var level = getLevel();
+            var winRate = 0.5;
+            if (ownedAvatars.indexOf('naizhuang') !== -1) {
+                winRate = 1.0;
+            } else if (level === '奶王') {
+                winRate = 0.8;
+            }
+
+            var win = Math.random() < winRate;
+
+            if (win) {
+                var gain = Math.floor(Math.random() * 401) + 100;
+                coin += gain;
+                saveAll();
+                alert('💥 战胜奶龙！获得 ' + gain + ' 奶币！');
+            } else {
+                var lose = Math.floor(Math.random() * 251) + 50;
+                if (coin < lose) lose = coin;
+                coin -= lose;
+                saveAll();
+                alert('😵 被奶龙打败……失去 ' + lose + ' 奶币。');
+            }
+
+            var shopCoinEl = document.getElementById('shopCoin');
+            if (shopCoinEl) shopCoinEl.textContent = coin;
+        });
+
+        /* ========== 加载动画：固定 4 秒后隐藏 ========== */
+        setTimeout(function() {
+            document.getElementById('loader').classList.add('hide');
+        }, 4000);
 
         /* ========== 图鉴渲染 ========== */
         function renderDex() {
