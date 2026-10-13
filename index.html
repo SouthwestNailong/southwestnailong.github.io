@@ -352,12 +352,10 @@
             font-weight: bold;
             text-shadow: 0 1px 3px rgba(0,0,0,0.6);
         }
-        /* 未收集的普通款：变暗、不可点 */
         .dex-item.locked {
             filter: brightness(0.35) grayscale(1);
             cursor: not-allowed;
         }
-        /* 未收集的隐藏款：不暗，用红问号占位 */
         .dex-item.hidden-locked {
             cursor: not-allowed;
             border-color: #e74c3c;
@@ -384,7 +382,6 @@
             border-color: #e74c3c;
             box-shadow: 0 0 14px rgba(231, 76, 60, 0.9);
         }
-        /* 全部收集后，金色发光边框 */
         .dex-item.all-gold {
             border-color: #FFD700 !important;
             box-shadow: 0 0 16px rgba(255, 215, 0, 0.9),
@@ -396,7 +393,6 @@
             to   { box-shadow: 0 0 22px rgba(255,215,0,1),   0 0 44px rgba(255,215,0,0.7); }
         }
 
-        /* 图鉴详情弹窗 */
         .dex-detail {
             position: fixed;
             top: 0; left: 0;
@@ -434,6 +430,104 @@
             border: none;
             cursor: pointer;
         }
+
+        /* ===== 录取通知书弹窗 ===== */
+        .notice-modal {
+            background: #fff;
+            border-radius: 15px;
+            padding: 24px;
+            max-width: 90%;
+            max-height: 88%;
+            overflow: auto;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .notice-modal h2 {
+            font-size: 22px;
+            color: #c0392b;
+            text-align: center;
+            margin: 0 0 22px;
+            font-weight: bold;
+        }
+        .notice-label {
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+            margin: 14px 0 6px;
+        }
+        .notice-input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+        .notice-input:focus { border-color: #c0392b; }
+        .notice-btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .notice-btn-row button {
+            flex: 1;
+            padding: 14px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #c0392b;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .notice-btn-row button:hover { background-color: #a93226; }
+        .notice-btn-row button:active { transform: scale(0.97); }
+
+        /* 通知书预览卡片 */
+        #noticePreview {
+            margin-top: 24px;
+            background: #fdf6e3;
+            border: 8px solid #c0392b;
+            padding: 26px 22px 18px;
+            box-sizing: border-box;
+        }
+        #noticePreview .np-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #c0392b;
+            letter-spacing: 6px;
+            margin: 6px 0 10px;
+        }
+        #noticePreview .np-sub {
+            text-align: center;
+            font-size: 18px;
+            color: #c0392b;
+            margin-bottom: 26px;
+        }
+        #noticePreview .np-body {
+            font-size: 17px;
+            color: #333;
+            line-height: 2.1;
+        }
+        #noticePreview .np-body b {
+            color: #c0392b;
+        }
+        #noticePreview .np-foot {
+            text-align: center;
+            font-size: 15px;
+            color: #a0784a;
+            margin-top: 26px;
+        }
+        #noticePreview .np-links {
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            margin-top: 14px;
+            line-height: 1.8;
+        }
     </style>
 </head>
 <body>
@@ -448,11 +542,12 @@
     <!-- 背景图层 -->
     <div class="bg-layer"></div>
 
-    <!-- 左上角：打奶龙 + 奶图鉴 -->
+    <!-- 左上角：打奶龙 + 奶图鉴 + 通知书 -->
     <div class="left-buttons">
         <button class="hit-btn" id="hitBtn">打奶龙</button>
         <div class="hit-count">已打：<span id="hitCount">0</span> 下</div>
         <button class="dex-btn" onclick="openModal('modalDex')">奶图鉴</button>
+        <button class="dex-btn" onclick="openModal('modalNotice')">通知书</button>
     </div>
 
     <!-- 右上角三个按钮 -->
@@ -556,6 +651,44 @@
         </div>
     </div>
 
+    <!-- ===== 奶龙录取通知书弹窗 ===== -->
+    <div class="modal" id="modalNotice">
+        <div class="notice-modal">
+            <button class="close-btn" onclick="closeModal('modalNotice')">×</button>
+            <h2>奶龙大学 × 西南石油大学 联合培养录取通知书</h2>
+
+            <div class="notice-label">姓名</div>
+            <input class="notice-input" id="noticeName" type="text" placeholder="请输入姓名">
+
+            <div class="notice-label">专业</div>
+            <input class="notice-input" id="noticeMajor" type="text" placeholder="例如：油气储运工程">
+
+            <div class="notice-btn-row">
+                <button onclick="generateNotice()">生成预览</button>
+                <button onclick="downloadNotice()">下载通知书图片</button>
+            </div>
+
+            <!-- 通知书预览 -->
+            <div id="noticePreview">
+                <div class="np-title">录取通知书</div>
+                <div class="np-sub">奶龙大学 × 西南石油大学（联合培养）</div>
+                <div class="np-body">
+                    兹收到：<br>
+                    　姓名：<b id="pvName">奶龙</b><br>
+                    　录取专业：<b id="pvMajor">能源与奶龙工程</b><br><br>
+                    校训：明德笃志，博学创新<br>
+                    石大精神：为祖国加油，为民族争气
+                </div>
+                <div class="np-foot">✨ 奶龙陪你深耕油气，能源报国 ✨</div>
+                <div class="np-links">
+                    趣味联动 ｜ 官方学籍查询：https://www.swpu.edu.cn/<br>
+                    ⚠️ 趣味玩梗工具，非官方录取文件<br>
+                    西南石油大学官网：https://www.swpu.edu.cn/
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         /* ========== 弹窗控制 ========== */
         function openModal(id) {
@@ -614,14 +747,12 @@
             { id:"naigou", img:"naigou.jpeg", name:"奶狗", desc:"大狗叫！", rarity:"normal" },
             { id:"naidan", img:"naidan.jpg", name:"奶蛋", desc:"俺无敌？！", rarity:"normal" },
             { id:"dounai", img:"dounai.jpeg", name:"豆奶", desc:"某个AI的衍生体，为什么会变成这个样子...", rarity:"normal" },
-
             { id:"naizhuang", img:"naizhuang.jpeg", name:"奶壮", desc:"不折不扣的奶中硬汉", rarity:"hidden" },
             { id:"naidan_lun", img:"naidan_lun.png", name:"奶蛋（轮椅）", desc:"满脸写满无敌的奶蛋，真的需要操作吗？", rarity:"hidden" },
             { id:"lienai", img:"lienai.jpg", name:"猎奶", desc:"众神之父会庇佑你们！", rarity:"hidden" },
             { id:"rain", img:"Image_1791022800868_721.jpg", name:"雨中奶龙", desc:"雨中的奶龙，伦敦未必有他忧郁", rarity:"hidden" }
         ];
 
-        /* ========== 已收集记录 ========== */
         var collected = [];
         try {
             var savedDex = localStorage.getItem('nailongDex');
@@ -654,13 +785,11 @@
                     div.onclick = function() { showDexDetail(item); };
                 } else {
                     if (item.rarity === 'hidden') {
-                        // 未收集的隐藏款：不变暗，显示红问号
                         div.className += ' hidden-locked';
                         div.innerHTML =
                             '<div class="hidden-mark">?</div>' +
                             '<div class="dex-name">???</div>';
                     } else {
-                        // 未收集的普通款：变暗
                         div.className += ' locked';
                         div.innerHTML =
                             '<img src="' + item.img + '" alt="未收集">' +
@@ -668,64 +797,4 @@
                     }
                 }
 
-                // 全部收集后，加金色发光边框
                 if (allCollected) div.className += ' all-gold';
-
-                grid.appendChild(div);
-            });
-        }
-
-        /* ========== 显示勋章详情 ========== */
-        function showDexDetail(item) {
-            document.getElementById('dexDetailImg').src = item.img;
-            document.getElementById('dexDetailName').textContent = item.name;
-            document.getElementById('dexDetailDesc').textContent = item.desc;
-            document.getElementById('dexDetail').classList.add('show');
-        }
-        function closeDexDetail() {
-            document.getElementById('dexDetail').classList.remove('show');
-        }
-
-        /* 打开图鉴时重新渲染 */
-        var origOpenModal = openModal;
-        openModal = function(id) {
-            if (id === 'modalDex') renderDex();
-            origOpenModal(id);
-        };
-
-        /* ========== 每日一奶：随机抽取 ========== */
-        document.getElementById('dailyBtn').addEventListener('click', function() {
-            var normalList = DEX_DATA.filter(function(x) { return x.rarity === 'normal'; });
-            var hiddenList = DEX_DATA.filter(function(x) { return x.rarity === 'hidden'; });
-
-            var picked;
-
-            // 4 张隐藏款，每张 3%（合计 12%）
-            var roll = Math.random();
-            if (roll < 0.12) {
-                picked = hiddenList[Math.floor(Math.random() * hiddenList.length)];
-            } else {
-                picked = normalList[Math.floor(Math.random() * normalList.length)];
-            }
-
-            if (collected.indexOf(picked.id) === -1) {
-                collected.push(picked.id);
-                saveCollected();
-            }
-
-            document.getElementById('dailyImg').src = picked.img;
-            document.getElementById('dailyName').textContent = picked.name;
-            var rar = document.getElementById('dailyRarity');
-            if (picked.rarity === 'hidden') {
-                rar.textContent = '⭐ 隐藏款 ⭐';
-                rar.className = 'result-rarity result-hidden';
-            } else {
-                rar.textContent = '普通款';
-                rar.className = 'result-rarity';
-            }
-            openModal('modalDaily');
-        });
-    </script>
-
-</body>
-    </html>
