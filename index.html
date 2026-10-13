@@ -23,8 +23,6 @@
             visibility: hidden;
             pointer-events: none;
         }
-
-        /* 带蓝色发光动效的图片 */
         .loader-img {
             width: 320px;
             height: 320px;
@@ -40,37 +38,23 @@
         }
         @keyframes glowPulse {
             from {
-                box-shadow:
-                    0 0 15px rgba(0, 150, 255, 0.7),
-                    0 0 40px rgba(0, 150, 255, 0.5),
-                    0 0 70px rgba(0, 150, 255, 0.3);
+                box-shadow: 0 0 15px rgba(0,150,255,0.7), 0 0 40px rgba(0,150,255,0.5), 0 0 70px rgba(0,150,255,0.3);
                 transform: scale(1);
             }
             to {
-                box-shadow:
-                    0 0 35px rgba(0, 150, 255, 1),
-                    0 0 90px rgba(0, 150, 255, 0.9),
-                    0 0 140px rgba(0, 150, 255, 0.6),
-                    0 0 200px rgba(0, 150, 255, 0.3);
+                box-shadow: 0 0 35px rgba(0,150,255,1), 0 0 90px rgba(0,150,255,0.9), 0 0 140px rgba(0,150,255,0.6), 0 0 200px rgba(0,150,255,0.3);
                 transform: scale(1.08);
             }
         }
-
-        /* 旋转小圈 */
         .loader-spinner {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border: 4px solid #FFD700;
             border-top-color: transparent;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             margin-bottom: 16px;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* 淡蓝色文字 */
+        @keyframes spin { to { transform: rotate(360deg); } }
         .loader-text {
             font-size: 18px;
             color: #66b3ff;
@@ -78,7 +62,7 @@
             letter-spacing: 2px;
         }
 
-        /* ===== 背景图层（独立，不影响任何内容） ===== */
+        /* ===== 背景图层 ===== */
         .bg-layer {
             position: fixed;
             top: 0; left: 0;
@@ -96,17 +80,15 @@
             background-color: #f5f5f5;
         }
 
-        /* 右上角按钮容器 */
+        /* ===== 右上角按钮 ===== */
         .top-buttons {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 20px; right: 20px;
             display: flex;
             flex-direction: column;
             gap: 12px;
             z-index: 100;
         }
-
         .top-buttons button {
             padding: 12px 28px;
             font-size: 16px;
@@ -119,28 +101,21 @@
             transition: all 0.2s;
             white-space: nowrap;
         }
-        .top-buttons button:hover {
-            background-color: #FFC000;
-            transform: scale(1.05);
-        }
-        .top-buttons button:active {
-            transform: scale(0.97);
-        }
+        .top-buttons button:hover { background-color: #FFC000; transform: scale(1.05); }
+        .top-buttons button:active { transform: scale(0.97); }
 
-        /* 左上角：打奶龙按钮 */
-        .hit-area {
+        /* ===== 左上角按钮组 ===== */
+        .left-buttons {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            top: 20px; left: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 8px;
+            gap: 12px;
             z-index: 100;
+            align-items: center;
         }
         .hit-btn {
-            width: 80px;
-            height: 80px;
+            width: 80px; height: 80px;
             border-radius: 50%;
             background-color: #0066cc;
             color: #fff;
@@ -153,42 +128,87 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
-        .hit-btn:active {
-            transform: scale(0.9);
-        }
+        .hit-btn:active { transform: scale(0.9); }
         .hit-count {
-            font-size: 14px;
-            color: #333;
+            font-size: 14px; color: #333;
             background: #fff;
             padding: 4px 12px;
             border-radius: 20px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             white-space: nowrap;
         }
+        .dex-btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #9b59b6;
+            color: #fff;
+            border: 3px solid #7d3c98;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .dex-btn:hover { background-color: #7d3c98; transform: scale(1.05); }
+        .dex-btn:active { transform: scale(0.97); }
 
-        /* 主图 */
+        /* ===== 主图与 GIF ===== */
         .main-img {
             display: block;
-            max-width: 90%;
-            height: auto;
+            max-width: 90%; height: auto;
             margin: 100px auto 0;
             border-radius: 10px;
             position: relative;
             z-index: 1;
         }
-
-        /* 主图下方的 GIF */
         .gif-img {
             display: block;
-            max-width: 90%;
-            height: auto;
+            max-width: 90%; height: auto;
             margin: 20px auto 0;
             border-radius: 10px;
             position: relative;
             z-index: 1;
         }
 
-        /* ===== 弹窗通用样式 ===== */
+        /* ===== 底部“每日一奶”按钮 ===== */
+        .daily-area {
+            text-align: center;
+            margin: 40px 0 60px;
+            position: relative;
+            z-index: 1;
+        }
+        .daily-btn {
+            position: relative;
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            background-color: #FFD700;
+            color: #8a6d00;
+            font-size: 18px;
+            font-weight: bold;
+            border: 5px solid #FFC000;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            transition: transform 0.1s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .daily-btn:active { transform: scale(0.94); }
+        .daily-btn::before,
+        .daily-btn::after {
+            content: "";
+            position: absolute;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border-radius: 50%;
+            border: 4px solid #FFD700;
+            animation: ringOut 2s ease-out infinite;
+            pointer-events: none;
+        }
+        .daily-btn::after { animation-delay: 1s; }
+        @keyframes ringOut {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        /* ===== 通用弹窗 ===== */
         .modal {
             display: none;
             position: fixed;
@@ -199,9 +219,7 @@
             align-items: center;
             z-index: 999;
         }
-        .modal.show {
-            display: flex;
-        }
+        .modal.show { display: flex; }
         .modal-content {
             background: #fff;
             padding: 30px;
@@ -212,25 +230,18 @@
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        .modal-content img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
+        .modal-content img { max-width: 100%; border-radius: 10px; }
         .close-btn {
             position: absolute;
-            top: 10px;
-            right: 15px;
+            top: 10px; right: 15px;
             font-size: 24px;
             cursor: pointer;
             color: #999;
             border: none;
             background: none;
         }
-        .close-btn:hover {
-            color: #333;
-        }
+        .close-btn:hover { color: #333; }
 
-        /* 弹窗内跳转按钮 */
         .go-btn {
             display: block;
             margin: 20px auto 0;
@@ -244,23 +255,11 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             transition: all 0.2s;
         }
-        .go-btn:hover {
-            background-color: #FFC000;
-            transform: scale(1.05);
-        }
-        .go-btn:active {
-            transform: scale(0.97);
-        }
+        .go-btn:hover { background-color: #FFC000; transform: scale(1.05); }
+        .go-btn:active { transform: scale(0.97); }
 
-        /* 游戏列表 */
-        .game-list {
-            list-style: none;
-            padding: 0;
-            margin: 15px 0 0;
-        }
-        .game-list li {
-            margin: 8px 0;
-        }
+        .game-list { list-style: none; padding: 0; margin: 15px 0 0; }
+        .game-list li { margin: 8px 0; }
         .game-list a {
             display: block;
             padding: 10px 15px;
@@ -271,17 +270,169 @@
             border: 1px solid #eee;
             transition: all 0.2s;
         }
-        .game-list a:hover {
-            background: #FFD700;
-            color: #333;
-            border-color: #FFC000;
-        }
+        .game-list a:hover { background: #FFD700; color: #333; border-color: #FFC000; }
         .more-link {
             display: block;
             text-align: center;
             margin-top: 20px;
             color: #0066cc;
             font-weight: bold;
+        }
+
+        /* ===== 每日一奶抽取结果 ===== */
+        .daily-result { text-align: center; }
+        .daily-result .result-img {
+            width: 260px; height: 260px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            margin-bottom: 16px;
+        }
+        .daily-result .result-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .daily-result .result-rarity {
+            font-size: 14px;
+            color: #fff;
+            background: #9b59b6;
+            padding: 4px 14px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .daily-result .result-hidden { background: #e74c3c; }
+
+        /* ===== 奶图鉴弹窗 ===== */
+        .dex-modal {
+            background: url("wood-bg.jpg") center/cover #8B5A2B;
+            border-radius: 15px;
+            padding: 24px;
+            max-width: 90%;
+            max-height: 85%;
+            overflow: auto;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .dex-title {
+            text-align: center;
+            color: #fff8e7;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0 0 18px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+        .dex-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+        .dex-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid #d4a76a;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .dex-item img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .dex-item .dex-name {
+            font-size: 13px;
+            color: #fff8e7;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+        }
+        /* 未收集的普通款：变暗、不可点 */
+        .dex-item.locked {
+            filter: brightness(0.35) grayscale(1);
+            cursor: not-allowed;
+        }
+        /* 未收集的隐藏款：不暗，用红问号占位 */
+        .dex-item.hidden-locked {
+            cursor: not-allowed;
+            border-color: #e74c3c;
+        }
+        .dex-item.hidden-locked .hidden-mark {
+            width: 100%;
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(231, 76, 60, 0.15);
+            border-radius: 8px;
+            margin-bottom: 6px;
+            font-size: 44px;
+            color: #e74c3c;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
+        }
+        .dex-item.unlocked:hover {
+            transform: scale(1.05);
+            border-color: #FFD700;
+        }
+        .dex-item.hidden-rarity.unlocked {
+            border-color: #e74c3c;
+            box-shadow: 0 0 14px rgba(231, 76, 60, 0.9);
+        }
+        /* 全部收集后，金色发光边框 */
+        .dex-item.all-gold {
+            border-color: #FFD700 !important;
+            box-shadow: 0 0 16px rgba(255, 215, 0, 0.9),
+                        0 0 30px rgba(255, 215, 0, 0.6) !important;
+            animation: goldGlow 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes goldGlow {
+            from { box-shadow: 0 0 12px rgba(255,215,0,0.7), 0 0 24px rgba(255,215,0,0.4); }
+            to   { box-shadow: 0 0 22px rgba(255,215,0,1),   0 0 44px rgba(255,215,0,0.7); }
+        }
+
+        /* 图鉴详情弹窗 */
+        .dex-detail {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+        }
+        .dex-detail.show { display: flex; }
+        .dex-detail-content {
+            background: #fff;
+            padding: 24px;
+            border-radius: 15px;
+            max-width: 80%;
+            text-align: center;
+            position: relative;
+        }
+        .dex-detail-content img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 14px;
+        }
+        .dex-detail-content h3 { margin: 0 0 8px; color: #333; }
+        .dex-detail-content p { margin: 0; color: #666; font-size: 14px; }
+        .dex-detail-close {
+            position: absolute;
+            top: 8px; right: 14px;
+            font-size: 24px;
+            color: #999;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -294,13 +445,14 @@
         <div class="loader-text">正在进入奶龙大学</div>
     </div>
 
-    <!-- 背景图层，独立在最底层 -->
+    <!-- 背景图层 -->
     <div class="bg-layer"></div>
 
-    <!-- 左上角：打奶龙按钮 -->
-    <div class="hit-area">
+    <!-- 左上角：打奶龙 + 奶图鉴 -->
+    <div class="left-buttons">
         <button class="hit-btn" id="hitBtn">打奶龙</button>
         <div class="hit-count">已打：<span id="hitCount">0</span> 下</div>
+        <button class="dex-btn" onclick="openModal('modalDex')">奶图鉴</button>
     </div>
 
     <!-- 右上角三个按钮 -->
@@ -315,6 +467,11 @@
 
     <!-- 主图下面的 GIF -->
     <img class="gif-img" src="1790999540100.gif" alt="动图">
+
+    <!-- 底部：每日一奶 -->
+    <div class="daily-area">
+        <button class="daily-btn" id="dailyBtn">每日一奶</button>
+    </div>
 
     <!-- ===== 弹窗一 ===== -->
     <div class="modal" id="modal1">
@@ -370,7 +527,37 @@
         </div>
     </div>
 
+    <!-- ===== 每日一奶结果弹窗 ===== -->
+    <div class="modal" id="modalDaily">
+        <div class="modal-content daily-result">
+            <button class="close-btn" onclick="closeModal('modalDaily')">×</button>
+            <img class="result-img" id="dailyImg" src="" alt="抽取结果">
+            <div class="result-name" id="dailyName"></div>
+            <div class="result-rarity" id="dailyRarity"></div>
+        </div>
+    </div>
+
+    <!-- ===== 奶图鉴弹窗 ===== -->
+    <div class="modal" id="modalDex">
+        <div class="dex-modal">
+            <button class="close-btn" onclick="closeModal('modalDex')" style="color:#fff;">×</button>
+            <div class="dex-title">📖 奶图鉴</div>
+            <div class="dex-grid" id="dexGrid"></div>
+        </div>
+    </div>
+
+    <!-- ===== 图鉴详情弹窗 ===== -->
+    <div class="dex-detail" id="dexDetail">
+        <div class="dex-detail-content">
+            <button class="dex-detail-close" onclick="closeDexDetail()">×</button>
+            <img id="dexDetailImg" src="" alt="勋章图">
+            <h3 id="dexDetailName"></h3>
+            <p id="dexDetailDesc"></p>
+        </div>
+    </div>
+
     <script>
+        /* ========== 弹窗控制 ========== */
         function openModal(id) {
             document.getElementById(id).classList.add('show');
         }
@@ -385,7 +572,7 @@
             });
         });
 
-        /* 打奶龙计数 */
+        /* ========== 打奶龙计数 ========== */
         var hitBtn = document.getElementById('hitBtn');
         var hitCountEl = document.getElementById('hitCount');
         var count = 0;
@@ -394,20 +581,17 @@
             if (saved !== null) count = parseInt(saved, 10) || 0;
         } catch (e) {}
         hitCountEl.textContent = count;
-
         hitBtn.addEventListener('click', function() {
             count++;
             hitCountEl.textContent = count;
-            try {
-                localStorage.setItem('nailongHitCount', count);
-            } catch (e) {}
+            try { localStorage.setItem('nailongHitCount', count); } catch (e) {}
         });
 
-        /* 强制加载动画停留满 4 秒 */
+        /* ========== 加载动画：强制停留 4 秒 ========== */
         var startTime = Date.now();
         function hideLoader() {
             var elapsed = Date.now() - startTime;
-            var remain = 4000 - elapsed;   // 4 秒 - 已过时间
+            var remain = 4000 - elapsed;
             if (remain > 0) {
                 setTimeout(hideLoader, remain);
             } else {
@@ -415,7 +599,133 @@
             }
         }
         hideLoader();
+
+        /* ========== 奶图鉴数据 ========== */
+        var DEX_DATA = [
+            { id:"yenai", img:"yenai.jpg", name:"椰奶", desc:"由椰子变异而成，会能吃吗？", rarity:"normal" },
+            { id:"naixia", img:"naixia.jpeg", name:"奶蛛侠", desc:"某个宇宙的彼得帕克似乎并不是被蜘蛛咬中的...", rarity:"normal" },
+            { id:"naiwa", img:"naiwa.jpg", name:"奶蛙", desc:"奶蛙经典造型", rarity:"normal" },
+            { id:"naishe", img:"naishe.png", name:"奶蛇", desc:"一只奶蛇，应该没毒", rarity:"normal" },
+            { id:"naishu", img:"naishu.jpg", name:"奶鼠", desc:"一只奶鼠...小心偷你的零食", rarity:"normal" },
+            { id:"nairen", img:"nairen.jpeg", name:"奶人", desc:"似乎有什么疑问的样子", rarity:"normal" },
+            { id:"naimao", img:"naimao.jpeg", name:"奶猫", desc:"谁不喜欢猫咪呢，就算是奶猫...", rarity:"normal" },
+            { id:"naike", img:"naike.jpeg", name:"奶蝌", desc:"奶蛙的幼年体", rarity:"normal" },
+            { id:"naidou", img:"naidou.jpeg", name:"奶豆", desc:"奶家最小的成员", rarity:"normal" },
+            { id:"naigou", img:"naigou.jpeg", name:"奶狗", desc:"大狗叫！", rarity:"normal" },
+            { id:"naidan", img:"naidan.jpg", name:"奶蛋", desc:"俺无敌？！", rarity:"normal" },
+            { id:"dounai", img:"dounai.jpeg", name:"豆奶", desc:"某个AI的衍生体，为什么会变成这个样子...", rarity:"normal" },
+
+            { id:"naizhuang", img:"naizhuang.jpeg", name:"奶壮", desc:"不折不扣的奶中硬汉", rarity:"hidden" },
+            { id:"naidan_lun", img:"naidan_lun.png", name:"奶蛋（轮椅）", desc:"满脸写满无敌的奶蛋，真的需要操作吗？", rarity:"hidden" },
+            { id:"lienai", img:"lienai.jpg", name:"猎奶", desc:"众神之父会庇佑你们！", rarity:"hidden" },
+            { id:"rain", img:"Image_1791022800868_721.jpg", name:"雨中奶龙", desc:"雨中的奶龙，伦敦未必有他忧郁", rarity:"hidden" }
+        ];
+
+        /* ========== 已收集记录 ========== */
+        var collected = [];
+        try {
+            var savedDex = localStorage.getItem('nailongDex');
+            if (savedDex) collected = JSON.parse(savedDex);
+        } catch (e) {}
+        function saveCollected() {
+            try { localStorage.setItem('nailongDex', JSON.stringify(collected)); } catch (e) {}
+        }
+
+        /* ========== 渲染图鉴 ========== */
+        function renderDex() {
+            var grid = document.getElementById('dexGrid');
+            grid.innerHTML = '';
+
+            var totalCount = DEX_DATA.length;
+            var allCollected = (collected.length >= totalCount);
+
+            DEX_DATA.forEach(function(item) {
+                var div = document.createElement('div');
+                var has = collected.indexOf(item.id) !== -1;
+
+                div.className = 'dex-item';
+                if (item.rarity === 'hidden') div.className += ' hidden-rarity';
+
+                if (has) {
+                    div.className += ' unlocked';
+                    div.innerHTML =
+                        '<img src="' + item.img + '" alt="' + item.name + '">' +
+                        '<div class="dex-name">' + item.name + '</div>';
+                    div.onclick = function() { showDexDetail(item); };
+                } else {
+                    if (item.rarity === 'hidden') {
+                        // 未收集的隐藏款：不变暗，显示红问号
+                        div.className += ' hidden-locked';
+                        div.innerHTML =
+                            '<div class="hidden-mark">?</div>' +
+                            '<div class="dex-name">???</div>';
+                    } else {
+                        // 未收集的普通款：变暗
+                        div.className += ' locked';
+                        div.innerHTML =
+                            '<img src="' + item.img + '" alt="未收集">' +
+                            '<div class="dex-name">???</div>';
+                    }
+                }
+
+                // 全部收集后，加金色发光边框
+                if (allCollected) div.className += ' all-gold';
+
+                grid.appendChild(div);
+            });
+        }
+
+        /* ========== 显示勋章详情 ========== */
+        function showDexDetail(item) {
+            document.getElementById('dexDetailImg').src = item.img;
+            document.getElementById('dexDetailName').textContent = item.name;
+            document.getElementById('dexDetailDesc').textContent = item.desc;
+            document.getElementById('dexDetail').classList.add('show');
+        }
+        function closeDexDetail() {
+            document.getElementById('dexDetail').classList.remove('show');
+        }
+
+        /* 打开图鉴时重新渲染 */
+        var origOpenModal = openModal;
+        openModal = function(id) {
+            if (id === 'modalDex') renderDex();
+            origOpenModal(id);
+        };
+
+        /* ========== 每日一奶：随机抽取 ========== */
+        document.getElementById('dailyBtn').addEventListener('click', function() {
+            var normalList = DEX_DATA.filter(function(x) { return x.rarity === 'normal'; });
+            var hiddenList = DEX_DATA.filter(function(x) { return x.rarity === 'hidden'; });
+
+            var picked;
+
+            // 4 张隐藏款，每张 3%（合计 12%）
+            var roll = Math.random();
+            if (roll < 0.12) {
+                picked = hiddenList[Math.floor(Math.random() * hiddenList.length)];
+            } else {
+                picked = normalList[Math.floor(Math.random() * normalList.length)];
+            }
+
+            if (collected.indexOf(picked.id) === -1) {
+                collected.push(picked.id);
+                saveCollected();
+            }
+
+            document.getElementById('dailyImg').src = picked.img;
+            document.getElementById('dailyName').textContent = picked.name;
+            var rar = document.getElementById('dailyRarity');
+            if (picked.rarity === 'hidden') {
+                rar.textContent = '⭐ 隐藏款 ⭐';
+                rar.className = 'result-rarity result-hidden';
+            } else {
+                rar.textContent = '普通款';
+                rar.className = 'result-rarity';
+            }
+            openModal('modalDaily');
+        });
     </script>
 
 </body>
-</html>
+    </html>
