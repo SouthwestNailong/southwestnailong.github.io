@@ -726,7 +726,7 @@
     color: #fff;
     border: none;
     background: none;
-        }
+}
         /* ===== 商城弹窗 ===== */
         .shop-modal {
             background: #fffaf0;
@@ -984,11 +984,11 @@
         <button onclick="openModal('modal3')">奶龙游戏</button>
     </div>
 
-    <!-- 主图片 -->
-    <img class="main-img" src="IMG_20261012_213836.png" alt="首页图片">
+    <!-- 主图片（懒加载） -->
+    <img class="main-img" src="IMG_20261012_213836.png" loading="lazy" alt="首页图片">
 
-    <!-- 主图下面的 GIF -->
-    <img class="gif-img" src="1790999540100.gif" alt="动图">
+    <!-- 主图下面的 GIF（懒加载） -->
+    <img class="gif-img" src="1790999540100.gif" loading="lazy" alt="动图">
 
     <!-- 底部：每日一奶 + 主页留言按钮 -->
     <div class="daily-area">
@@ -1194,7 +1194,7 @@
     const SUPABASE_KEY = 'sb_publishable_i34w6oPt4_BrNRG-ZQcChA_3rF1KsYT';
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    /* ========== 本设备唯一 ID（用于点赞限制） ========== */
+    /* ========== 本设备唯一 ID ========== */
     var DEVICE_ID = localStorage.getItem('nailongDeviceId');
     if (!DEVICE_ID) {
         DEVICE_ID = 'dev_' + Math.random().toString(36).slice(2) + Date.now();
@@ -1341,7 +1341,7 @@
         setTimeout(function() { tip.classList.remove('show'); }, 2500);
     }
 
-    /* ========== 图鉴渲染 ========== */
+    /* ========== 图鉴渲染（图片懒加载） ========== */
     function renderDex() {
         var grid = document.getElementById('dexGrid');
         grid.innerHTML = '';
@@ -1358,7 +1358,7 @@
             if (has) {
                 div.className += ' unlocked';
                 div.innerHTML =
-                    '<img src="' + item.img + '" loading="lazy" alt="' + item.name + '">' +
+                    '<img data-src="' + item.img + '" loading="lazy" alt="' + item.name + '">' +
                     '<div class="dex-name">' + item.name + ' ×' + (cardCount[item.id] || 0) + '</div>';
                 div.onclick = function() { showDexDetail(item); };
             } else {
@@ -1370,7 +1370,7 @@
                 } else {
                     div.className += ' locked';
                     div.innerHTML =
-                        '<img src="' + item.img + '" loading="lazy" alt="未收集">' +
+                        '<img data-src="' + item.img + '" loading="lazy" alt="未收集">' +
                         '<div class="dex-name">???</div>';
                 }
             }
@@ -1378,6 +1378,14 @@
             if (allCollected) div.className += ' all-gold';
             grid.appendChild(div);
         });
+
+        // 图鉴打开时才真正加载图片
+        setTimeout(function() {
+            grid.querySelectorAll('img[data-src]').forEach(function(img) {
+                img.src = img.getAttribute('data-src');
+                img.removeAttribute('data-src');
+            });
+        }, 50);
     }
         function showDexDetail(item) {
             document.getElementById('dexDetailImg').src = item.img;
@@ -1507,10 +1515,10 @@
             if (shopCoinEl) shopCoinEl.textContent = coin;
         });
 
-        /* ========== 加载动画 ========== */
+        /* ========== 加载动画：2 秒后隐藏 ========== */
         setTimeout(function() {
             document.getElementById('loader').classList.add('hide');
-        }, 4000);
+        }, 2000);
 
         /* ========== 个人账户 ========== */
         function openAccount() {
@@ -1728,7 +1736,7 @@
             }
         }
 
-        /* ========== 留言系统（优化版：批量查询） ========== */
+        /* ========== 留言系统（优化版） ========== */
         async function loadComments(pageId, containerId) {
             var container = document.getElementById(containerId);
             container.innerHTML = '加载中...';
